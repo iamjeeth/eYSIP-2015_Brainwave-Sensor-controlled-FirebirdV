@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.5.22)  31 MAY 2015 10:13
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.5.22)  31 MAY 2015 13:14
 entering extended mode
 **Step_wise*study*report.tex
 
@@ -273,23 +273,73 @@ Overfull \hbox (7.15196pt too wide) in paragraph at lines 47--76
  []
 
 [2 <C:/eYSIP-2015_Brainwave-Sensor-controlled-FirebirdV/Report/images/Mindwave_
-mobile.jpg>] [3]
+mobile.jpg>] <images/BT_Configure.jpg, id=11, 1638.12pt x 919.435pt>
+File: images/BT_Configure.jpg Graphic file (type jpg)
+
+<use images/BT_Configure.jpg>
+Package pdftex.def Info: images/BT_Configure.jpg used on input line 90.
+(pdftex.def)             Requested size: 426.776pt x 227.61348pt.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 95.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 95.
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+
+Underfull \hbox (badness 10000) in paragraph at lines 95--96
+
+ []
+
+
+Overfull \hbox (7.15196pt too wide) in paragraph at lines 77--98
+[]$[]$ 
+ []
+
+[3] <images/BT-AT_Configure.jpg, id=15, 218.31563pt x 516.42938pt>
+File: images/BT-AT_Configure.jpg Graphic file (type jpg)
+
+<use images/BT-AT_Configure.jpg>
+Package pdftex.def Info: images/BT-AT_Configure.jpg used on input line 100.
+(pdftex.def)             Requested size: 142.26323pt x 284.53348pt.
+ [4 <C:/eYSIP-2015_Brainwave-Sensor-controlled-FirebirdV/Report/images/BT_Confi
+gure.jpg>] [5 <C:/eYSIP-2015_Brainwave-Sensor-controlled-FirebirdV/Report/image
+s/BT-AT_Configure.jpg>]
 ("C:\eYSIP-2015_Brainwave-Sensor-controlled-FirebirdV\Report\Step_wise study re
 port.aux") ) 
 Here is how much of TeX's memory you used:
- 1637 strings out of 493921
- 22947 string characters out of 3144879
+ 1664 strings out of 493921
+ 23516 string characters out of 3144879
  86121 words of memory out of 3000000
- 4954 multiletter control sequences out of 15000+200000
+ 4976 multiletter control sequences out of 15000+200000
  9422 words of font info for 33 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  27i,8n,32p,2773b,288s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
 mbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
-12.pfb>
-Output written on "Step_wise study report.pdf" (3 pages, 286387 bytes).
+12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb>
+Output written on "Step_wise study report.pdf" (5 pages, 737956 bytes).
 PDF statistics:
- 21 PDF objects out of 1000 (max. 8388607)
+ 33 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

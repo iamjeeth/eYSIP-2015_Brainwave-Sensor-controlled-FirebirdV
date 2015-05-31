@@ -73,6 +73,36 @@ incrementing a checksum accumulator (checksum += byte).\\
 \textbf{6.} Read the next byte from the stream as the[CHKSUM] byte., If the [CHKSUM] does not match your calculated chksum (CHKSUM FAILED)., Otherwise, you may now parse the contents of the Payload into DataRows to obtain the Data
 Values, as described below., In either case, return to step 1.\\\\
 \end{minipage}
+
+\begin{minipage}{0.98\textwidth}
+	\section{Configure JY-MCU Bluetooth module}
+	\vspace{-0.1in}
+\textbf{Connect the blutooth module as mentioned below:}\\
+1. Use USB to serial converter for configuration of bluetooth.\\
+2. Connect RXD pin of converter to TXD pin of JY-MCU and TXD pin of converter to RXD pin of JY-MCU.\\
+3. To configure bluetooth we have to bring the module in AT(Attention) mode. To do this, connect Key pin of module to Vcc of converter.\\
+4. Connect Vcc and GND of converter to Vcc and GND of module.\\
+5. Use Flash Magic or Bray's Terminal software to configure bluetooth.\\
+6. Connect the circuit to laptop or PC.
+
+\begin{center}
+	\graphicspath{ {images/} }
+	\includegraphics[width=15cm, height=8cm]{BT_Configure}
+\end{center}
+
+\textbf{Various AT commands given:}
+\begin{itemize}
+	\item AT \item AT+NAME=EEG\item AT+PSWD=0000\item AT+CMODE=0\item AT+UART=9600,0,0\item AT+ROLE=1\item AT+BIND=”XXXX,YY,ZZZZZZ” (Mindwave Unique Number(20:68:9d:88:c1:d7))\item AT+IAC=”9E8B33”\item AT+CLASS=”0”\item AT+INQM=1\\Refer JY-MCU Bluetooth module datasheet for more AT commands.\\
+\end{itemize}
+\end{minipage}
+\begin{center}
+	\graphicspath{ {images/} }
+	\includegraphics[width=5cm, height=10cm]{BT-AT_Configure}
+\end{center}
 	
+
+
+
+
 \end{document}
 	
