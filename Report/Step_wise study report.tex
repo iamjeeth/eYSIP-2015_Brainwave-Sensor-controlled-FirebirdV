@@ -44,6 +44,35 @@ Max Power Consumption: 15mA @ 3.3V • Operating voltage 2.97 ~3.63V\\
 	\includegraphics[width=12cm, height=10cm]{Mindwave_mobile}
 \end{center}
 
+\begin{minipage}{0.98\textwidth}
+	\section{How EEG sends data?...}
+	\vspace{-0.1in}
+ThinkGear components deliver their digital data as an asynchronous serial stream of bytes. The serial
+stream must be parsed and interpreted as ThinkGear Packets:\\1. Packet Header\\2. Packet Payload\\3. Payload Checksum\\\textbf{Packet Structure}\\-----------------Header------------------------------Payload--------------------Checksum-----\\
+--[SYNC][SYNC][PayloadLength]------[PAYLOAD DATA...]------[CHECKSUM]--\\\\\textbf{Packet Header}\\
+The two [SYNC] bytes are used to signal the beginning of a new arriving Packet and are bytes with
+the value 0xAA (decimal 170). Synchronization is two bytes long, instead of only one, to reduce the
+chance that [SYNC] (0xAA) bytes occurring within the Packet could be mistaken for the beginning of
+a Packet.\\The [PLENGTH] byte indicates the length, in bytes, of the Packet's Data Payload [PAYLOAD…]
+section, and may be any value from 0 up to 169. Any higher value indicates an error (PLENGTH TOO
+LARGE). Be sure to note that [PLENGTH] is the length of the Packet's Data Payload, NOT of the
+entire Packet. The Packet's complete length will always be [PayloadLength] + 4.\\\\
+\textbf{Data Payload}\\The Data Payload of a Packet is simply a series of bytes. The number of Data Payload bytes in the
+Packet is given by the [PLENGTH] byte from the Packet Header.\\\\\textbf{Payload Checksum}\\The [CHKSUM] Byte must be used to verify the integrity of the Packet's Data Payload. The Payload's
+Checksum is defined as:\\
+1. summing all the bytes of the Packet's Data Payload\\
+2. taking the lowest 8 bits of the sum\\
+3. performing the bit inverse (one's compliment inverse) on those lowest 8 bits\\\\  
+\textbf{Step-By-Step Guide to Parsing a Packet}\\
+\textbf{1.} Keep reading bytes from the stream until a [SYNC] byte (0xAA) is encountered.\\
+\textbf{2.} Read the next byte and ensure it is also a [SYNC] byte, If not a [SYNC] byte, return to step 1., Otherwise, continue to step 3.\\
+\textbf{3.} Read the next byte from the stream as the [PLENGTH].,  If [PLENGTH] is 170 ([SYNC]), then repeat step 3., If [PLENGTH] is greater than 170, then return to step 1 (PLENGTH TOO LARGE)., Otherwise, continue to step 4.\\
+\textbf{4.} Read the next [PLENGTH] bytes of the [PAYLOAD…] from the stream, saving them into a storage area (such as an unsigned char payload[256] array). Sum up each byte as it is read by
+incrementing a checksum accumulator (checksum += byte).\\
+\textbf{5.} Take the lowest 8 bits of the checksum accumulator and invert them.\\
+\textbf{6.} Read the next byte from the stream as the[CHKSUM] byte., If the [CHKSUM] does not match your calculated chksum (CHKSUM FAILED)., Otherwise, you may now parse the contents of the Payload into DataRows to obtain the Data
+Values, as described below., In either case, return to step 1.\\\\
+\end{minipage}
 	
 \end{document}
 	
