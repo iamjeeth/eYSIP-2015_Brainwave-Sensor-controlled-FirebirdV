@@ -49,7 +49,8 @@ while(i<=1)
             }
 
 }
-
+length();
+}
 
 void length()
 {
@@ -83,7 +84,7 @@ void length()
         }
         else
         {
-            brainwave=false;
+            AA_Detection();
         }
 
 
@@ -126,8 +127,10 @@ void length()
             break;
           }                                 // switch
         }                                   // for loop
+AA_Detection();
  }
 }
+
 void checkData(){
             if(payloaddata[i]<=20)
                 PORTJ=0X01;
@@ -153,7 +156,7 @@ void init_devices()
 {
  cli(); //Clears the global interrupts
  port_init();  //Initializes all the ports
- uart2_init(); //Initialize UART1 for serial communication
+ uart2_init(); //Initialize UART2 for serial communication
  sei();   //Enables the global interrupts
 }
 
@@ -162,7 +165,7 @@ int main(){
 init_devices();
 uart2_init(void);
 AA_Detection();
-length();
+
 return 0;
 }
 
