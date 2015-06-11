@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Attention_level_LED_BarGraph", "Attention_level_LED_BarGraph\Attention_level_LED_BarGraph.cproj", "{FD7F2839-11EF-4B3F-9BA0-82049DD9971F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD7F2839-11EF-4B3F-9BA0-82049DD9971F}.Debug|AVR.ActiveCfg = Debug|AVR
+		{FD7F2839-11EF-4B3F-9BA0-82049DD9971F}.Debug|AVR.Build.0 = Debug|AVR
+		{FD7F2839-11EF-4B3F-9BA0-82049DD9971F}.Release|AVR.ActiveCfg = Release|AVR
+		{FD7F2839-11EF-4B3F-9BA0-82049DD9971F}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
