@@ -74,6 +74,15 @@ void uart1_init(void)
 	UCSR1A = 0x00;
 	UCSR1C = 0x06;
 	UBRR1L = 0x5F; //set baud rate lo
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	UBRR1H = 0x00; //set baud rate hi
 	UCSR1B = 0xD8;
 }

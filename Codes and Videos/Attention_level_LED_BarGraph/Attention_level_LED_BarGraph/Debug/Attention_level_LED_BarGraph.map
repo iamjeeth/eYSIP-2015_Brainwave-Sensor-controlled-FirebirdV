@@ -417,21 +417,21 @@ LOAD c:/program files (x86)/atmel/atmel studio 6.0/extensions/atmel/avrgcc/3.4.0
  .debug_abbrev  0x0000015a       0x14 c:/program files (x86)/atmel/atmel studio 6.0/extensions/atmel/avrgcc/3.4.0.65/avrtoolchain/bin/../lib/gcc/avr/4.6.2/avr6\libgcc.a(_copy_data.o)
  .debug_abbrev  0x0000016e       0x14 c:/program files (x86)/atmel/atmel studio 6.0/extensions/atmel/avrgcc/3.4.0.65/avrtoolchain/bin/../lib/gcc/avr/4.6.2/avr6\libgcc.a(_clear_bss.o)
 
-.debug_line     0x00000000      0x34e
+.debug_line     0x00000000      0x350
  *(.debug_line)
- .debug_line    0x00000000      0x1a5 Attention_level_LED_BarGraph.o
- .debug_line    0x000001a5       0x88 c:/program files (x86)/atmel/atmel studio 6.0/extensions/atmel/avrgcc/3.4.0.65/avrtoolchain/bin/../lib/gcc/avr/4.6.2/avr6\libgcc.a(_exit.o)
- .debug_line    0x0000022d       0x93 c:/program files (x86)/atmel/atmel studio 6.0/extensions/atmel/avrgcc/3.4.0.65/avrtoolchain/bin/../lib/gcc/avr/4.6.2/avr6\libgcc.a(_copy_data.o)
- .debug_line    0x000002c0       0x8e c:/program files (x86)/atmel/atmel studio 6.0/extensions/atmel/avrgcc/3.4.0.65/avrtoolchain/bin/../lib/gcc/avr/4.6.2/avr6\libgcc.a(_clear_bss.o)
+ .debug_line    0x00000000      0x1a7 Attention_level_LED_BarGraph.o
+ .debug_line    0x000001a7       0x88 c:/program files (x86)/atmel/atmel studio 6.0/extensions/atmel/avrgcc/3.4.0.65/avrtoolchain/bin/../lib/gcc/avr/4.6.2/avr6\libgcc.a(_exit.o)
+ .debug_line    0x0000022f       0x93 c:/program files (x86)/atmel/atmel studio 6.0/extensions/atmel/avrgcc/3.4.0.65/avrtoolchain/bin/../lib/gcc/avr/4.6.2/avr6\libgcc.a(_copy_data.o)
+ .debug_line    0x000002c2       0x8e c:/program files (x86)/atmel/atmel studio 6.0/extensions/atmel/avrgcc/3.4.0.65/avrtoolchain/bin/../lib/gcc/avr/4.6.2/avr6\libgcc.a(_clear_bss.o)
 
 .debug_frame    0x00000000      0x194
  *(.debug_frame)
  .debug_frame   0x00000000      0x194 Attention_level_LED_BarGraph.o
 
-.debug_str      0x00000000      0x1d9
+.debug_str      0x00000000      0x1e4
  *(.debug_str)
- .debug_str     0x00000000      0x1d9 Attention_level_LED_BarGraph.o
-                                0x217 (size before relaxing)
+ .debug_str     0x00000000      0x1e4 Attention_level_LED_BarGraph.o
+                                0x222 (size before relaxing)
 
 .debug_loc      0x00000000      0x2eb
  *(.debug_loc)
