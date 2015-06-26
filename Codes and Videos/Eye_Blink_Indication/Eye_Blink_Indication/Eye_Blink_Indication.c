@@ -1,6 +1,9 @@
-//    Program       : Mindwave with avr                    //
-//    Interfacing   : JY-MCU Bluetooth Module              //
-//    Output        : Eye Blink Control Buzzer and motion  //
+/*
+Program for Eyeblink Detection using Mindwave mobile connected to Firebird V.
+Eyeblink is detected by Buzzer beep.
+Sensor paired is indicated by one LED blink
+Sensor removed from head is indicated by all LEDs blink.
+*/
 #define F_CPU 14745600
 #include<avr/io.h>
 #include<avr/interrupt.h>
@@ -13,46 +16,23 @@ volatile unsigned char checksum=0,generatedchecksum=0;
 unsigned int Raw_data,Poorquality,Plength,Eye_Enable=0,On_Flag=0,Off_Flag=1 ;
 unsigned int timer_flag=0,eye_count=0,j,n=0,k=0,z=0,p=0,i=0;
 long Temp,Avg_Raw,Temp_Avg;
- 
+
+ //LED bargraph configuration
  void LED_bargraph_config (void)
  {
 	 DDRJ = 0xFF;  //PORT J is configured as output
 	 PORTJ = 0x00; //Output is set to 0
-	 
-	 //LCD
-	 DDRC = DDRC | 0xF7;
-	 PORTC = PORTC & 0x80;
  }
- 
+ //Buzzer configuration
 void buzzer_pin_config (void)
 {
 	DDRC = DDRC | 0x08;		//Setting PORTC 3 as outpt
 	PORTC = PORTC & 0xF7;		//Setting PORTC 3 logic low to turnoff buzzer
 }
-//Motion configuration
-void motion_pin_config (void)
-{
-	DDRA = DDRA | 0x0F;
-	PORTA = PORTA & 0xF0;
-	DDRL = DDRL | 0x18;   //Setting PL3 and PL4 pins as output for PWM generation
-	PORTL = PORTL | 0x18; //PL3 and PL4 pins are for velocity control using PWM.
-}
-void motion_set (unsigned char Direction)
-{
-	unsigned char PortARestore = 0;
-
-	Direction &= 0x0F; 			// removing upper nibbel as it is not needed
-	PortARestore = PORTA; 			// reading the PORTA's original status
-	PortARestore &= 0xF0; 			// setting lower direction nibbel to 0
-	PortARestore |= Direction; 	// adding lower nibbel for direction command and restoring the PORTA status
-	PORTA = PortARestore; 			// setting the command to the port
-}
-
 
 //Function to initialize ports
 void port_init()
 {
-	motion_pin_config();
 	buzzer_pin_config();
 	LED_bargraph_config();
 }
@@ -72,11 +52,6 @@ void buzzer_off (void)
 	port_restore = port_restore & 0xF7;
 	PORTC = port_restore;
 }
-void left (void) //Left wheel backward, Right wheel forward
-{
-	motion_set(0x05);
-}
-
 //Function To Initialize UART2
 // desired baud rate:9600
 // actual baud rate:9600 (error 0.0%)
@@ -97,11 +72,7 @@ char USART1_RX_vect()
 	while(!(UCSR1A & (1<<RXC1)));
 	return UDR1;
 }
-void stop (void) //hard stop
-{
-	motion_set(0x00);
-}
- 
+
  void Small_Packet ()
  {
    generatedchecksum = 0;
@@ -112,10 +83,10 @@ void stop (void) //hard stop
    }
    generatedchecksum = 255 - generatedchecksum;
    checksum  = USART1_RX_vect();
-   if(checksum == generatedchecksum)        // Varify Checksum
+   if(checksum == generatedchecksum)        // Verify Checksum
    { 
-	   
-     if (j<64)
+	//Detection of eye-blink value   
+     if (j<64)                             //Taking average of 64 data packets for detection of eye-blink value
      {
        Raw_data  = ((payloadDataS[2] <<8)| payloadDataS[3]);
        if(Raw_data&0xF000)
@@ -137,7 +108,7 @@ void stop (void) //hard stop
    }
  }
  
- void Big_Packet()
+ void Big_Packet()                            //Detection of zero poor quality signal for verification of eye-blink detection
  {
    for(int i = 0; i < Plength; i++)
    { 
@@ -154,7 +125,7 @@ void stop (void) //hard stop
      }
  }
  
- void Onesec_Rawval_Fun ()
+ void Onesec_Rawval_Fun ()       //Taking average of 3 values obtained from 64 data packets for confirmation of eye-blink detection
  {
    Avg_Raw = Temp/64;
    if (On_Flag==0 && Off_Flag==1)
@@ -185,15 +156,13 @@ void stop (void) //hard stop
    {
      if (On_Flag==1 && Off_Flag==0)
      {
-       if ((Avg_Raw>Theshold_Eyeblink) && (Avg_Raw<350))
+       if ((Avg_Raw>Theshold_Eyeblink) && (Avg_Raw<350))  //Eye-blink detection confirmed
        {
-		   left();
-		   buzzer_on();_delay_ms(250);buzzer_off();
-		   stop();
+		   buzzer_on();_delay_ms(250);buzzer_off();	
 	   }		   
        else
        {
-         if (Avg_Raw>350)  //Raw data values indication
+         if (Avg_Raw>350)  //Not connected to head or Raw data values indication
          {
 			PORTJ=0xFF;
            On_Flag==0;Off_Flag==1;
@@ -203,10 +172,10 @@ void stop (void) //hard stop
      
 	 else
      {
-       PORTJ=0x7F;
+       PORTJ=0x00;
      }  
 	 }	      
-   else    //not connected indication
+   else    //Device is paired
    {
      PORTJ=0x01;
    }

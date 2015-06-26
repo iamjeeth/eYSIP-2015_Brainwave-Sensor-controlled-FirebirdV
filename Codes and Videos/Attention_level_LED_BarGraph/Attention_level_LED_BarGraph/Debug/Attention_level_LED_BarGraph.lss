@@ -3,27 +3,27 @@ Attention_level_LED_BarGraph.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000578  00000000  00000000  00000074  2**1
+  0 .text         0000056e  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .bss          0000000a  00800200  00800200  000005ec  2**0
+  1 .bss          00000030  00800200  00800200  000005e2  2**0
                   ALLOC
-  2 .stab         000006e4  00000000  00000000  000005ec  2**2
+  2 .stab         000006e4  00000000  00000000  000005e4  2**2
                   CONTENTS, READONLY, DEBUGGING
-  3 .stabstr      00000085  00000000  00000000  00000cd0  2**0
+  3 .stabstr      00000085  00000000  00000000  00000cc8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_aranges 00000080  00000000  00000000  00000d58  2**3
+  4 .debug_aranges 000000c0  00000000  00000000  00000d50  2**3
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000565  00000000  00000000  00000dd8  2**0
+  5 .debug_info   00000742  00000000  00000000  00000e10  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000182  00000000  00000000  0000133d  2**0
+  6 .debug_abbrev 00000188  00000000  00000000  00001552  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000350  00000000  00000000  000014bf  2**0
+  7 .debug_line   0000048b  00000000  00000000  000016da  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000194  00000000  00000000  00001810  2**2
+  8 .debug_frame  00000174  00000000  00000000  00001b68  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000001e4  00000000  00000000  000019a4  2**0
+  9 .debug_str    000001bf  00000000  00000000  00001cdc  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    000002eb  00000000  00000000  00001b88  2**0
+ 10 .debug_loc    000002bd  00000000  00000000  00001e9b  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -65,7 +65,7 @@ Disassembly of section .text:
   84:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
   88:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
   8c:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
-  90:	0c 94 46 01 	jmp	0x28c	; 0x28c <__vector_36>
+  90:	0c 94 0e 01 	jmp	0x21c	; 0x21c <__vector_36>
   94:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
   98:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
   9c:	0c 94 93 00 	jmp	0x126	; 0x126 <__bad_interrupt>
@@ -101,7 +101,7 @@ Disassembly of section .text:
   f4:	12 e0       	ldi	r17, 0x02	; 2
   f6:	a0 e0       	ldi	r26, 0x00	; 0
   f8:	b2 e0       	ldi	r27, 0x02	; 2
-  fa:	e8 e7       	ldi	r30, 0x78	; 120
+  fa:	ee e6       	ldi	r30, 0x6E	; 110
   fc:	f5 e0       	ldi	r31, 0x05	; 5
   fe:	00 e0       	ldi	r16, 0x00	; 0
  100:	0b bf       	out	0x3b, r16	; 59
@@ -122,20 +122,20 @@ Disassembly of section .text:
  116:	1d 92       	st	X+, r1
 
 00000118 <.do_clear_bss_start>:
- 118:	aa 30       	cpi	r26, 0x0A	; 10
+ 118:	a0 33       	cpi	r26, 0x30	; 48
  11a:	b1 07       	cpc	r27, r17
  11c:	e1 f7       	brne	.-8      	; 0x116 <.do_clear_bss_loop>
- 11e:	0e 94 b1 02 	call	0x562	; 0x562 <main>
- 122:	0c 94 ba 02 	jmp	0x574	; 0x574 <_exit>
+ 11e:	0e 94 52 02 	call	0x4a4	; 0x4a4 <main>
+ 122:	0c 94 b5 02 	jmp	0x56a	; 0x56a <_exit>
 
 00000126 <__bad_interrupt>:
  126:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 0000012a <LED_bargraph_config>:
-volatile unsigned char attention;
-volatile unsigned char generatedChecksum;
-volatile unsigned char payloaddata[]={0};
-volatile unsigned char data_array[]={0};
+unsigned int f,k=0;
+long Temp1;
+
+//Configuration of LED Bar graph
 void LED_bargraph_config (void)
 {
  12a:	cf 93       	push	r28
@@ -153,14 +153,13 @@ void LED_bargraph_config (void)
  13e:	91 e0       	ldi	r25, 0x01	; 1
  140:	fc 01       	movw	r30, r24
  142:	10 82       	st	Z, r1
-		
 }
  144:	df 91       	pop	r29
  146:	cf 91       	pop	r28
  148:	08 95       	ret
 
 0000014a <buzzer_pin_config>:
-
+//Configuration of Buzzer
 void buzzer_pin_config (void)
 {
  14a:	cf 93       	push	r28
@@ -177,7 +176,7 @@ void buzzer_pin_config (void)
  15e:	28 60       	ori	r18, 0x08	; 8
  160:	fc 01       	movw	r30, r24
  162:	20 83       	st	Z, r18
-	PORTC = PORTC & 0xF7;		//Setting PORTC 3 logic low to turnoff buzzer
+	PORTC = PORTC & 0xF7;   //Setting PORTC 3 logic low to turnoff buzzer
  164:	88 e2       	ldi	r24, 0x28	; 40
  166:	90 e0       	ldi	r25, 0x00	; 0
  168:	28 e2       	ldi	r18, 0x28	; 40
@@ -192,610 +191,613 @@ void buzzer_pin_config (void)
  178:	cf 91       	pop	r28
  17a:	08 95       	ret
 
-0000017c <motion_pin_config>:
-
-void motion_pin_config (void)
+0000017c <buzzer_on>:
+//Buzzer On
+void buzzer_on (void)
 {
  17c:	cf 93       	push	r28
  17e:	df 93       	push	r29
- 180:	cd b7       	in	r28, 0x3d	; 61
- 182:	de b7       	in	r29, 0x3e	; 62
-	DDRA = DDRA | 0x0F;
- 184:	81 e2       	ldi	r24, 0x21	; 33
- 186:	90 e0       	ldi	r25, 0x00	; 0
- 188:	21 e2       	ldi	r18, 0x21	; 33
- 18a:	30 e0       	ldi	r19, 0x00	; 0
- 18c:	f9 01       	movw	r30, r18
- 18e:	20 81       	ld	r18, Z
- 190:	2f 60       	ori	r18, 0x0F	; 15
- 192:	fc 01       	movw	r30, r24
- 194:	20 83       	st	Z, r18
-	PORTA = PORTA & 0xF0;
- 196:	82 e2       	ldi	r24, 0x22	; 34
- 198:	90 e0       	ldi	r25, 0x00	; 0
- 19a:	22 e2       	ldi	r18, 0x22	; 34
- 19c:	30 e0       	ldi	r19, 0x00	; 0
- 19e:	f9 01       	movw	r30, r18
- 1a0:	20 81       	ld	r18, Z
- 1a2:	20 7f       	andi	r18, 0xF0	; 240
- 1a4:	fc 01       	movw	r30, r24
- 1a6:	20 83       	st	Z, r18
-	DDRL = DDRL | 0x18;   //Setting PL3 and PL4 pins as output for PWM generation
- 1a8:	8a e0       	ldi	r24, 0x0A	; 10
- 1aa:	91 e0       	ldi	r25, 0x01	; 1
- 1ac:	2a e0       	ldi	r18, 0x0A	; 10
- 1ae:	31 e0       	ldi	r19, 0x01	; 1
- 1b0:	f9 01       	movw	r30, r18
- 1b2:	20 81       	ld	r18, Z
- 1b4:	28 61       	ori	r18, 0x18	; 24
- 1b6:	fc 01       	movw	r30, r24
- 1b8:	20 83       	st	Z, r18
-	PORTL = PORTL | 0x18; //PL3 and PL4 pins are for velocity control using PWM.
- 1ba:	8b e0       	ldi	r24, 0x0B	; 11
- 1bc:	91 e0       	ldi	r25, 0x01	; 1
- 1be:	2b e0       	ldi	r18, 0x0B	; 11
- 1c0:	31 e0       	ldi	r19, 0x01	; 1
- 1c2:	f9 01       	movw	r30, r18
- 1c4:	20 81       	ld	r18, Z
- 1c6:	28 61       	ori	r18, 0x18	; 24
- 1c8:	fc 01       	movw	r30, r24
- 1ca:	20 83       	st	Z, r18
-}
- 1cc:	df 91       	pop	r29
- 1ce:	cf 91       	pop	r28
- 1d0:	08 95       	ret
-
-000001d2 <port_init>:
-
-//Function to initialize ports
-void port_init()
-{
- 1d2:	cf 93       	push	r28
- 1d4:	df 93       	push	r29
- 1d6:	cd b7       	in	r28, 0x3d	; 61
- 1d8:	de b7       	in	r29, 0x3e	; 62
-	motion_pin_config();
- 1da:	0e 94 be 00 	call	0x17c	; 0x17c <motion_pin_config>
-	buzzer_pin_config();
- 1de:	0e 94 a5 00 	call	0x14a	; 0x14a <buzzer_pin_config>
-	LED_bargraph_config();
- 1e2:	0e 94 95 00 	call	0x12a	; 0x12a <LED_bargraph_config>
-}
- 1e6:	df 91       	pop	r29
- 1e8:	cf 91       	pop	r28
- 1ea:	08 95       	ret
-
-000001ec <buzzer_on>:
-
-void buzzer_on (void)
-{
- 1ec:	cf 93       	push	r28
- 1ee:	df 93       	push	r29
- 1f0:	0f 92       	push	r0
- 1f2:	cd b7       	in	r28, 0x3d	; 61
- 1f4:	de b7       	in	r29, 0x3e	; 62
+ 180:	0f 92       	push	r0
+ 182:	cd b7       	in	r28, 0x3d	; 61
+ 184:	de b7       	in	r29, 0x3e	; 62
 	unsigned char port_restore = 0;
- 1f6:	19 82       	std	Y+1, r1	; 0x01
+ 186:	19 82       	std	Y+1, r1	; 0x01
 	port_restore = PINC;
- 1f8:	86 e2       	ldi	r24, 0x26	; 38
- 1fa:	90 e0       	ldi	r25, 0x00	; 0
- 1fc:	fc 01       	movw	r30, r24
- 1fe:	80 81       	ld	r24, Z
- 200:	89 83       	std	Y+1, r24	; 0x01
+ 188:	86 e2       	ldi	r24, 0x26	; 38
+ 18a:	90 e0       	ldi	r25, 0x00	; 0
+ 18c:	fc 01       	movw	r30, r24
+ 18e:	80 81       	ld	r24, Z
+ 190:	89 83       	std	Y+1, r24	; 0x01
 	port_restore = port_restore | 0x08;
- 202:	89 81       	ldd	r24, Y+1	; 0x01
- 204:	88 60       	ori	r24, 0x08	; 8
- 206:	89 83       	std	Y+1, r24	; 0x01
+ 192:	89 81       	ldd	r24, Y+1	; 0x01
+ 194:	88 60       	ori	r24, 0x08	; 8
+ 196:	89 83       	std	Y+1, r24	; 0x01
 	PORTC = port_restore;
- 208:	88 e2       	ldi	r24, 0x28	; 40
- 20a:	90 e0       	ldi	r25, 0x00	; 0
- 20c:	29 81       	ldd	r18, Y+1	; 0x01
- 20e:	fc 01       	movw	r30, r24
- 210:	20 83       	st	Z, r18
+ 198:	88 e2       	ldi	r24, 0x28	; 40
+ 19a:	90 e0       	ldi	r25, 0x00	; 0
+ 19c:	29 81       	ldd	r18, Y+1	; 0x01
+ 19e:	fc 01       	movw	r30, r24
+ 1a0:	20 83       	st	Z, r18
 }
- 212:	0f 90       	pop	r0
- 214:	df 91       	pop	r29
- 216:	cf 91       	pop	r28
- 218:	08 95       	ret
+ 1a2:	0f 90       	pop	r0
+ 1a4:	df 91       	pop	r29
+ 1a6:	cf 91       	pop	r28
+ 1a8:	08 95       	ret
 
-0000021a <buzzer_off>:
-
+000001aa <buzzer_off>:
+//Buzzer Off
 void buzzer_off (void)
 {
- 21a:	cf 93       	push	r28
- 21c:	df 93       	push	r29
- 21e:	0f 92       	push	r0
+ 1aa:	cf 93       	push	r28
+ 1ac:	df 93       	push	r29
+ 1ae:	0f 92       	push	r0
+ 1b0:	cd b7       	in	r28, 0x3d	; 61
+ 1b2:	de b7       	in	r29, 0x3e	; 62
+	unsigned char port_restore = 0;
+ 1b4:	19 82       	std	Y+1, r1	; 0x01
+	port_restore = PINC;
+ 1b6:	86 e2       	ldi	r24, 0x26	; 38
+ 1b8:	90 e0       	ldi	r25, 0x00	; 0
+ 1ba:	fc 01       	movw	r30, r24
+ 1bc:	80 81       	ld	r24, Z
+ 1be:	89 83       	std	Y+1, r24	; 0x01
+	port_restore = port_restore & 0xF7;
+ 1c0:	89 81       	ldd	r24, Y+1	; 0x01
+ 1c2:	87 7f       	andi	r24, 0xF7	; 247
+ 1c4:	89 83       	std	Y+1, r24	; 0x01
+	PORTC = port_restore;
+ 1c6:	88 e2       	ldi	r24, 0x28	; 40
+ 1c8:	90 e0       	ldi	r25, 0x00	; 0
+ 1ca:	29 81       	ldd	r18, Y+1	; 0x01
+ 1cc:	fc 01       	movw	r30, r24
+ 1ce:	20 83       	st	Z, r18
+}
+ 1d0:	0f 90       	pop	r0
+ 1d2:	df 91       	pop	r29
+ 1d4:	cf 91       	pop	r28
+ 1d6:	08 95       	ret
+
+000001d8 <uart1_init>:
+//Configuration of UART1 for receiving data packets via bluetooth from EEG sensor
+void uart1_init(void)
+{
+ 1d8:	cf 93       	push	r28
+ 1da:	df 93       	push	r29
+ 1dc:	cd b7       	in	r28, 0x3d	; 61
+ 1de:	de b7       	in	r29, 0x3e	; 62
+	UCSR1B = 0x00; //disable while setting baud rate
+ 1e0:	89 ec       	ldi	r24, 0xC9	; 201
+ 1e2:	90 e0       	ldi	r25, 0x00	; 0
+ 1e4:	fc 01       	movw	r30, r24
+ 1e6:	10 82       	st	Z, r1
+	UCSR1A = 0x00;
+ 1e8:	88 ec       	ldi	r24, 0xC8	; 200
+ 1ea:	90 e0       	ldi	r25, 0x00	; 0
+ 1ec:	fc 01       	movw	r30, r24
+ 1ee:	10 82       	st	Z, r1
+	UCSR1C = 0x06;
+ 1f0:	8a ec       	ldi	r24, 0xCA	; 202
+ 1f2:	90 e0       	ldi	r25, 0x00	; 0
+ 1f4:	26 e0       	ldi	r18, 0x06	; 6
+ 1f6:	fc 01       	movw	r30, r24
+ 1f8:	20 83       	st	Z, r18
+	UBRR1L = 0x5F; //set baud rate lo
+ 1fa:	8c ec       	ldi	r24, 0xCC	; 204
+ 1fc:	90 e0       	ldi	r25, 0x00	; 0
+ 1fe:	2f e5       	ldi	r18, 0x5F	; 95
+ 200:	fc 01       	movw	r30, r24
+ 202:	20 83       	st	Z, r18
+	UBRR1H = 0x00; //set baud rate hi
+ 204:	8d ec       	ldi	r24, 0xCD	; 205
+ 206:	90 e0       	ldi	r25, 0x00	; 0
+ 208:	fc 01       	movw	r30, r24
+ 20a:	10 82       	st	Z, r1
+	UCSR1B = 0xD8;
+ 20c:	89 ec       	ldi	r24, 0xC9	; 201
+ 20e:	90 e0       	ldi	r25, 0x00	; 0
+ 210:	28 ed       	ldi	r18, 0xD8	; 216
+ 212:	fc 01       	movw	r30, r24
+ 214:	20 83       	st	Z, r18
+}
+ 216:	df 91       	pop	r29
+ 218:	cf 91       	pop	r28
+ 21a:	08 95       	ret
+
+0000021c <__vector_36>:
+// Receives data packets and store them in the buffer
+char USART1_RX_vect()
+{
+ 21c:	cf 93       	push	r28
+ 21e:	df 93       	push	r29
  220:	cd b7       	in	r28, 0x3d	; 61
  222:	de b7       	in	r29, 0x3e	; 62
-	unsigned char port_restore = 0;
- 224:	19 82       	std	Y+1, r1	; 0x01
-	port_restore = PINC;
- 226:	86 e2       	ldi	r24, 0x26	; 38
+	while(!(UCSR1A & (1<<RXC1)));
+ 224:	00 00       	nop
+ 226:	88 ec       	ldi	r24, 0xC8	; 200
  228:	90 e0       	ldi	r25, 0x00	; 0
  22a:	fc 01       	movw	r30, r24
  22c:	80 81       	ld	r24, Z
- 22e:	89 83       	std	Y+1, r24	; 0x01
-	port_restore = port_restore & 0xF7;
- 230:	89 81       	ldd	r24, Y+1	; 0x01
- 232:	87 7f       	andi	r24, 0xF7	; 247
- 234:	89 83       	std	Y+1, r24	; 0x01
-	PORTC = port_restore;
- 236:	88 e2       	ldi	r24, 0x28	; 40
- 238:	90 e0       	ldi	r25, 0x00	; 0
- 23a:	29 81       	ldd	r18, Y+1	; 0x01
- 23c:	fc 01       	movw	r30, r24
- 23e:	20 83       	st	Z, r18
-}
- 240:	0f 90       	pop	r0
- 242:	df 91       	pop	r29
- 244:	cf 91       	pop	r28
- 246:	08 95       	ret
-
-00000248 <uart1_init>:
-// desired baud rate:9600
-// actual baud rate:9600 (error 0.0%)
-// char size: 8 bit
-// parity: Disabled
-void uart1_init(void)
-{
- 248:	cf 93       	push	r28
- 24a:	df 93       	push	r29
- 24c:	cd b7       	in	r28, 0x3d	; 61
- 24e:	de b7       	in	r29, 0x3e	; 62
-	UCSR1B = 0x00; //disable while setting baud rate
- 250:	89 ec       	ldi	r24, 0xC9	; 201
- 252:	90 e0       	ldi	r25, 0x00	; 0
- 254:	fc 01       	movw	r30, r24
- 256:	10 82       	st	Z, r1
-	UCSR1A = 0x00;
- 258:	88 ec       	ldi	r24, 0xC8	; 200
- 25a:	90 e0       	ldi	r25, 0x00	; 0
- 25c:	fc 01       	movw	r30, r24
- 25e:	10 82       	st	Z, r1
-	UCSR1C = 0x06;
- 260:	8a ec       	ldi	r24, 0xCA	; 202
- 262:	90 e0       	ldi	r25, 0x00	; 0
- 264:	26 e0       	ldi	r18, 0x06	; 6
- 266:	fc 01       	movw	r30, r24
- 268:	20 83       	st	Z, r18
-	UBRR1L = 0x5F; //set baud rate lo
- 26a:	8c ec       	ldi	r24, 0xCC	; 204
- 26c:	90 e0       	ldi	r25, 0x00	; 0
- 26e:	2f e5       	ldi	r18, 0x5F	; 95
- 270:	fc 01       	movw	r30, r24
- 272:	20 83       	st	Z, r18
-	
-	
-	
-	
-	
-	UBRR1H = 0x00; //set baud rate hi
- 274:	8d ec       	ldi	r24, 0xCD	; 205
- 276:	90 e0       	ldi	r25, 0x00	; 0
- 278:	fc 01       	movw	r30, r24
- 27a:	10 82       	st	Z, r1
-	UCSR1B = 0xD8;
- 27c:	89 ec       	ldi	r24, 0xC9	; 201
- 27e:	90 e0       	ldi	r25, 0x00	; 0
- 280:	28 ed       	ldi	r18, 0xD8	; 216
- 282:	fc 01       	movw	r30, r24
- 284:	20 83       	st	Z, r18
-}
- 286:	df 91       	pop	r29
- 288:	cf 91       	pop	r28
- 28a:	08 95       	ret
-
-0000028c <__vector_36>:
-
-char USART1_RX_vect(){
- 28c:	cf 93       	push	r28
- 28e:	df 93       	push	r29
- 290:	cd b7       	in	r28, 0x3d	; 61
- 292:	de b7       	in	r29, 0x3e	; 62
-	while(!(UCSR1A & (1<<RXC1)));
- 294:	00 00       	nop
- 296:	88 ec       	ldi	r24, 0xC8	; 200
- 298:	90 e0       	ldi	r25, 0x00	; 0
- 29a:	fc 01       	movw	r30, r24
- 29c:	80 81       	ld	r24, Z
- 29e:	88 23       	and	r24, r24
- 2a0:	d4 f7       	brge	.-12     	; 0x296 <__vector_36+0xa>
+ 22e:	88 23       	and	r24, r24
+ 230:	d4 f7       	brge	.-12     	; 0x226 <__vector_36+0xa>
 	return UDR1;
- 2a2:	8e ec       	ldi	r24, 0xCE	; 206
- 2a4:	90 e0       	ldi	r25, 0x00	; 0
- 2a6:	fc 01       	movw	r30, r24
- 2a8:	80 81       	ld	r24, Z
-	
+ 232:	8e ec       	ldi	r24, 0xCE	; 206
+ 234:	90 e0       	ldi	r25, 0x00	; 0
+ 236:	fc 01       	movw	r30, r24
+ 238:	80 81       	ld	r24, Z
 }
- 2aa:	df 91       	pop	r29
- 2ac:	cf 91       	pop	r28
- 2ae:	08 95       	ret
+ 23a:	df 91       	pop	r29
+ 23c:	cf 91       	pop	r28
+ 23e:	08 95       	ret
 
-000002b0 <checkData>:
+00000240 <port_init>:
+//Initialization of buzzer and LED bargraph 
+void port_init()
+{
+ 240:	cf 93       	push	r28
+ 242:	df 93       	push	r29
+ 244:	cd b7       	in	r28, 0x3d	; 61
+ 246:	de b7       	in	r29, 0x3e	; 62
+	buzzer_pin_config();
+ 248:	0e 94 a5 00 	call	0x14a	; 0x14a <buzzer_pin_config>
+	LED_bargraph_config();
+ 24c:	0e 94 95 00 	call	0x12a	; 0x12a <LED_bargraph_config>
+}
+ 250:	df 91       	pop	r29
+ 252:	cf 91       	pop	r28
+ 254:	08 95       	ret
+
+00000256 <checkData>:
+//function for detecting various levels of attention 
 void checkData(){
- 2b0:	cf 93       	push	r28
- 2b2:	df 93       	push	r29
- 2b4:	cd b7       	in	r28, 0x3d	; 61
- 2b6:	de b7       	in	r29, 0x3e	; 62
-	if(payloaddata[i]>=1 && payloaddata[i]<=10){
- 2b8:	80 91 03 02 	lds	r24, 0x0203
- 2bc:	90 91 04 02 	lds	r25, 0x0204
- 2c0:	8f 5f       	subi	r24, 0xFF	; 255
- 2c2:	9d 4f       	sbci	r25, 0xFD	; 253
- 2c4:	fc 01       	movw	r30, r24
- 2c6:	80 81       	ld	r24, Z
- 2c8:	88 23       	and	r24, r24
- 2ca:	81 f0       	breq	.+32     	; 0x2ec <checkData+0x3c>
- 2cc:	80 91 03 02 	lds	r24, 0x0203
- 2d0:	90 91 04 02 	lds	r25, 0x0204
- 2d4:	8f 5f       	subi	r24, 0xFF	; 255
- 2d6:	9d 4f       	sbci	r25, 0xFD	; 253
- 2d8:	fc 01       	movw	r30, r24
- 2da:	80 81       	ld	r24, Z
- 2dc:	8b 30       	cpi	r24, 0x0B	; 11
- 2de:	30 f4       	brcc	.+12     	; 0x2ec <checkData+0x3c>
-	PORTJ=0X01;}
- 2e0:	85 e0       	ldi	r24, 0x05	; 5
- 2e2:	91 e0       	ldi	r25, 0x01	; 1
- 2e4:	21 e0       	ldi	r18, 0x01	; 1
- 2e6:	fc 01       	movw	r30, r24
- 2e8:	20 83       	st	Z, r18
- 2ea:	b5 c0       	rjmp	.+362    	; 0x456 <checkData+0x1a6>
-	else if(payloaddata[i]>10 && payloaddata[i]<=30){
- 2ec:	80 91 03 02 	lds	r24, 0x0203
- 2f0:	90 91 04 02 	lds	r25, 0x0204
- 2f4:	8f 5f       	subi	r24, 0xFF	; 255
- 2f6:	9d 4f       	sbci	r25, 0xFD	; 253
- 2f8:	fc 01       	movw	r30, r24
- 2fa:	80 81       	ld	r24, Z
- 2fc:	8b 30       	cpi	r24, 0x0B	; 11
- 2fe:	80 f0       	brcs	.+32     	; 0x320 <checkData+0x70>
- 300:	80 91 03 02 	lds	r24, 0x0203
- 304:	90 91 04 02 	lds	r25, 0x0204
- 308:	8f 5f       	subi	r24, 0xFF	; 255
- 30a:	9d 4f       	sbci	r25, 0xFD	; 253
- 30c:	fc 01       	movw	r30, r24
- 30e:	80 81       	ld	r24, Z
- 310:	8f 31       	cpi	r24, 0x1F	; 31
- 312:	30 f4       	brcc	.+12     	; 0x320 <checkData+0x70>
-	PORTJ=0x03;}
- 314:	85 e0       	ldi	r24, 0x05	; 5
- 316:	91 e0       	ldi	r25, 0x01	; 1
- 318:	23 e0       	ldi	r18, 0x03	; 3
- 31a:	fc 01       	movw	r30, r24
- 31c:	20 83       	st	Z, r18
- 31e:	9b c0       	rjmp	.+310    	; 0x456 <checkData+0x1a6>
-	else if(payloaddata[i]>30 && payloaddata[i]<=40){
- 320:	80 91 03 02 	lds	r24, 0x0203
- 324:	90 91 04 02 	lds	r25, 0x0204
- 328:	8f 5f       	subi	r24, 0xFF	; 255
- 32a:	9d 4f       	sbci	r25, 0xFD	; 253
- 32c:	fc 01       	movw	r30, r24
- 32e:	80 81       	ld	r24, Z
- 330:	8f 31       	cpi	r24, 0x1F	; 31
- 332:	80 f0       	brcs	.+32     	; 0x354 <checkData+0xa4>
- 334:	80 91 03 02 	lds	r24, 0x0203
- 338:	90 91 04 02 	lds	r25, 0x0204
- 33c:	8f 5f       	subi	r24, 0xFF	; 255
- 33e:	9d 4f       	sbci	r25, 0xFD	; 253
- 340:	fc 01       	movw	r30, r24
- 342:	80 81       	ld	r24, Z
- 344:	89 32       	cpi	r24, 0x29	; 41
- 346:	30 f4       	brcc	.+12     	; 0x354 <checkData+0xa4>
-	PORTJ=0X07;}
- 348:	85 e0       	ldi	r24, 0x05	; 5
- 34a:	91 e0       	ldi	r25, 0x01	; 1
- 34c:	27 e0       	ldi	r18, 0x07	; 7
- 34e:	fc 01       	movw	r30, r24
- 350:	20 83       	st	Z, r18
- 352:	81 c0       	rjmp	.+258    	; 0x456 <checkData+0x1a6>
-	else if(payloaddata[i]>40 && payloaddata[i]<=50){
- 354:	80 91 03 02 	lds	r24, 0x0203
- 358:	90 91 04 02 	lds	r25, 0x0204
- 35c:	8f 5f       	subi	r24, 0xFF	; 255
- 35e:	9d 4f       	sbci	r25, 0xFD	; 253
- 360:	fc 01       	movw	r30, r24
- 362:	80 81       	ld	r24, Z
- 364:	89 32       	cpi	r24, 0x29	; 41
- 366:	80 f0       	brcs	.+32     	; 0x388 <checkData+0xd8>
- 368:	80 91 03 02 	lds	r24, 0x0203
- 36c:	90 91 04 02 	lds	r25, 0x0204
- 370:	8f 5f       	subi	r24, 0xFF	; 255
- 372:	9d 4f       	sbci	r25, 0xFD	; 253
- 374:	fc 01       	movw	r30, r24
- 376:	80 81       	ld	r24, Z
- 378:	83 33       	cpi	r24, 0x33	; 51
- 37a:	30 f4       	brcc	.+12     	; 0x388 <checkData+0xd8>
-	PORTJ=0X0F;}
- 37c:	85 e0       	ldi	r24, 0x05	; 5
- 37e:	91 e0       	ldi	r25, 0x01	; 1
- 380:	2f e0       	ldi	r18, 0x0F	; 15
- 382:	fc 01       	movw	r30, r24
- 384:	20 83       	st	Z, r18
- 386:	67 c0       	rjmp	.+206    	; 0x456 <checkData+0x1a6>
-	else if(payloaddata[i]>50 && payloaddata[i]<=60){
- 388:	80 91 03 02 	lds	r24, 0x0203
- 38c:	90 91 04 02 	lds	r25, 0x0204
- 390:	8f 5f       	subi	r24, 0xFF	; 255
- 392:	9d 4f       	sbci	r25, 0xFD	; 253
- 394:	fc 01       	movw	r30, r24
- 396:	80 81       	ld	r24, Z
- 398:	83 33       	cpi	r24, 0x33	; 51
- 39a:	80 f0       	brcs	.+32     	; 0x3bc <checkData+0x10c>
- 39c:	80 91 03 02 	lds	r24, 0x0203
- 3a0:	90 91 04 02 	lds	r25, 0x0204
- 3a4:	8f 5f       	subi	r24, 0xFF	; 255
- 3a6:	9d 4f       	sbci	r25, 0xFD	; 253
- 3a8:	fc 01       	movw	r30, r24
- 3aa:	80 81       	ld	r24, Z
- 3ac:	8d 33       	cpi	r24, 0x3D	; 61
- 3ae:	30 f4       	brcc	.+12     	; 0x3bc <checkData+0x10c>
-	PORTJ=0X1F;}
- 3b0:	85 e0       	ldi	r24, 0x05	; 5
- 3b2:	91 e0       	ldi	r25, 0x01	; 1
- 3b4:	2f e1       	ldi	r18, 0x1F	; 31
- 3b6:	fc 01       	movw	r30, r24
- 3b8:	20 83       	st	Z, r18
- 3ba:	4d c0       	rjmp	.+154    	; 0x456 <checkData+0x1a6>
-	else if(payloaddata[i]>60 && payloaddata[i]<=70){
- 3bc:	80 91 03 02 	lds	r24, 0x0203
- 3c0:	90 91 04 02 	lds	r25, 0x0204
- 3c4:	8f 5f       	subi	r24, 0xFF	; 255
- 3c6:	9d 4f       	sbci	r25, 0xFD	; 253
- 3c8:	fc 01       	movw	r30, r24
- 3ca:	80 81       	ld	r24, Z
- 3cc:	8d 33       	cpi	r24, 0x3D	; 61
- 3ce:	80 f0       	brcs	.+32     	; 0x3f0 <checkData+0x140>
- 3d0:	80 91 03 02 	lds	r24, 0x0203
- 3d4:	90 91 04 02 	lds	r25, 0x0204
- 3d8:	8f 5f       	subi	r24, 0xFF	; 255
- 3da:	9d 4f       	sbci	r25, 0xFD	; 253
- 3dc:	fc 01       	movw	r30, r24
- 3de:	80 81       	ld	r24, Z
- 3e0:	87 34       	cpi	r24, 0x47	; 71
- 3e2:	30 f4       	brcc	.+12     	; 0x3f0 <checkData+0x140>
-	PORTJ=0X3F;}
- 3e4:	85 e0       	ldi	r24, 0x05	; 5
- 3e6:	91 e0       	ldi	r25, 0x01	; 1
- 3e8:	2f e3       	ldi	r18, 0x3F	; 63
- 3ea:	fc 01       	movw	r30, r24
- 3ec:	20 83       	st	Z, r18
- 3ee:	33 c0       	rjmp	.+102    	; 0x456 <checkData+0x1a6>
-	else if(payloaddata[i]>70 && payloaddata[i]<=80){
- 3f0:	80 91 03 02 	lds	r24, 0x0203
- 3f4:	90 91 04 02 	lds	r25, 0x0204
- 3f8:	8f 5f       	subi	r24, 0xFF	; 255
- 3fa:	9d 4f       	sbci	r25, 0xFD	; 253
- 3fc:	fc 01       	movw	r30, r24
- 3fe:	80 81       	ld	r24, Z
- 400:	87 34       	cpi	r24, 0x47	; 71
- 402:	80 f0       	brcs	.+32     	; 0x424 <checkData+0x174>
- 404:	80 91 03 02 	lds	r24, 0x0203
- 408:	90 91 04 02 	lds	r25, 0x0204
- 40c:	8f 5f       	subi	r24, 0xFF	; 255
- 40e:	9d 4f       	sbci	r25, 0xFD	; 253
- 410:	fc 01       	movw	r30, r24
- 412:	80 81       	ld	r24, Z
- 414:	81 35       	cpi	r24, 0x51	; 81
- 416:	30 f4       	brcc	.+12     	; 0x424 <checkData+0x174>
-	PORTJ=0X7F;}
- 418:	85 e0       	ldi	r24, 0x05	; 5
- 41a:	91 e0       	ldi	r25, 0x01	; 1
- 41c:	2f e7       	ldi	r18, 0x7F	; 127
- 41e:	fc 01       	movw	r30, r24
- 420:	20 83       	st	Z, r18
- 422:	19 c0       	rjmp	.+50     	; 0x456 <checkData+0x1a6>
-	else if(payloaddata[i]>80 && payloaddata[i]<=100){
- 424:	80 91 03 02 	lds	r24, 0x0203
- 428:	90 91 04 02 	lds	r25, 0x0204
- 42c:	8f 5f       	subi	r24, 0xFF	; 255
- 42e:	9d 4f       	sbci	r25, 0xFD	; 253
- 430:	fc 01       	movw	r30, r24
- 432:	80 81       	ld	r24, Z
- 434:	81 35       	cpi	r24, 0x51	; 81
- 436:	78 f0       	brcs	.+30     	; 0x456 <checkData+0x1a6>
- 438:	80 91 03 02 	lds	r24, 0x0203
- 43c:	90 91 04 02 	lds	r25, 0x0204
- 440:	8f 5f       	subi	r24, 0xFF	; 255
- 442:	9d 4f       	sbci	r25, 0xFD	; 253
- 444:	fc 01       	movw	r30, r24
- 446:	80 81       	ld	r24, Z
- 448:	85 36       	cpi	r24, 0x65	; 101
- 44a:	28 f4       	brcc	.+10     	; 0x456 <checkData+0x1a6>
-	PORTJ=0xFF;}
- 44c:	85 e0       	ldi	r24, 0x05	; 5
- 44e:	91 e0       	ldi	r25, 0x01	; 1
- 450:	2f ef       	ldi	r18, 0xFF	; 255
- 452:	fc 01       	movw	r30, r24
- 454:	20 83       	st	Z, r18
-	
+ 256:	cf 93       	push	r28
+ 258:	df 93       	push	r29
+ 25a:	cd b7       	in	r28, 0x3d	; 61
+ 25c:	de b7       	in	r29, 0x3e	; 62
+	if(Att_Avg>=1 && Att_Avg<=10){
+ 25e:	80 91 2b 02 	lds	r24, 0x022B
+ 262:	88 23       	and	r24, r24
+ 264:	51 f0       	breq	.+20     	; 0x27a <checkData+0x24>
+ 266:	80 91 2b 02 	lds	r24, 0x022B
+ 26a:	8b 30       	cpi	r24, 0x0B	; 11
+ 26c:	30 f4       	brcc	.+12     	; 0x27a <checkData+0x24>
+		PORTJ=0X01;
+ 26e:	85 e0       	ldi	r24, 0x05	; 5
+ 270:	91 e0       	ldi	r25, 0x01	; 1
+ 272:	21 e0       	ldi	r18, 0x01	; 1
+ 274:	fc 01       	movw	r30, r24
+ 276:	20 83       	st	Z, r18
+ 278:	61 c0       	rjmp	.+194    	; 0x33c <checkData+0xe6>
+	}
+	else if(Att_Avg>10 && Att_Avg<=30){
+ 27a:	80 91 2b 02 	lds	r24, 0x022B
+ 27e:	8b 30       	cpi	r24, 0x0B	; 11
+ 280:	50 f0       	brcs	.+20     	; 0x296 <checkData+0x40>
+ 282:	80 91 2b 02 	lds	r24, 0x022B
+ 286:	8f 31       	cpi	r24, 0x1F	; 31
+ 288:	30 f4       	brcc	.+12     	; 0x296 <checkData+0x40>
+		PORTJ=0x03;
+ 28a:	85 e0       	ldi	r24, 0x05	; 5
+ 28c:	91 e0       	ldi	r25, 0x01	; 1
+ 28e:	23 e0       	ldi	r18, 0x03	; 3
+ 290:	fc 01       	movw	r30, r24
+ 292:	20 83       	st	Z, r18
+ 294:	53 c0       	rjmp	.+166    	; 0x33c <checkData+0xe6>
+	}
+	else if(Att_Avg>30 && Att_Avg<=40){
+ 296:	80 91 2b 02 	lds	r24, 0x022B
+ 29a:	8f 31       	cpi	r24, 0x1F	; 31
+ 29c:	50 f0       	brcs	.+20     	; 0x2b2 <checkData+0x5c>
+ 29e:	80 91 2b 02 	lds	r24, 0x022B
+ 2a2:	89 32       	cpi	r24, 0x29	; 41
+ 2a4:	30 f4       	brcc	.+12     	; 0x2b2 <checkData+0x5c>
+		PORTJ=0X07;
+ 2a6:	85 e0       	ldi	r24, 0x05	; 5
+ 2a8:	91 e0       	ldi	r25, 0x01	; 1
+ 2aa:	27 e0       	ldi	r18, 0x07	; 7
+ 2ac:	fc 01       	movw	r30, r24
+ 2ae:	20 83       	st	Z, r18
+ 2b0:	45 c0       	rjmp	.+138    	; 0x33c <checkData+0xe6>
+	}
+	else if(Att_Avg>40 && Att_Avg<=50){
+ 2b2:	80 91 2b 02 	lds	r24, 0x022B
+ 2b6:	89 32       	cpi	r24, 0x29	; 41
+ 2b8:	50 f0       	brcs	.+20     	; 0x2ce <checkData+0x78>
+ 2ba:	80 91 2b 02 	lds	r24, 0x022B
+ 2be:	83 33       	cpi	r24, 0x33	; 51
+ 2c0:	30 f4       	brcc	.+12     	; 0x2ce <checkData+0x78>
+		PORTJ=0X0F;
+ 2c2:	85 e0       	ldi	r24, 0x05	; 5
+ 2c4:	91 e0       	ldi	r25, 0x01	; 1
+ 2c6:	2f e0       	ldi	r18, 0x0F	; 15
+ 2c8:	fc 01       	movw	r30, r24
+ 2ca:	20 83       	st	Z, r18
+ 2cc:	37 c0       	rjmp	.+110    	; 0x33c <checkData+0xe6>
+	}
+	else if(Att_Avg>50 && Att_Avg<=60){
+ 2ce:	80 91 2b 02 	lds	r24, 0x022B
+ 2d2:	83 33       	cpi	r24, 0x33	; 51
+ 2d4:	50 f0       	brcs	.+20     	; 0x2ea <checkData+0x94>
+ 2d6:	80 91 2b 02 	lds	r24, 0x022B
+ 2da:	8d 33       	cpi	r24, 0x3D	; 61
+ 2dc:	30 f4       	brcc	.+12     	; 0x2ea <checkData+0x94>
+		PORTJ=0X1F;
+ 2de:	85 e0       	ldi	r24, 0x05	; 5
+ 2e0:	91 e0       	ldi	r25, 0x01	; 1
+ 2e2:	2f e1       	ldi	r18, 0x1F	; 31
+ 2e4:	fc 01       	movw	r30, r24
+ 2e6:	20 83       	st	Z, r18
+ 2e8:	29 c0       	rjmp	.+82     	; 0x33c <checkData+0xe6>
+	}
+	else if(Att_Avg>60 && Att_Avg<=70){
+ 2ea:	80 91 2b 02 	lds	r24, 0x022B
+ 2ee:	8d 33       	cpi	r24, 0x3D	; 61
+ 2f0:	50 f0       	brcs	.+20     	; 0x306 <checkData+0xb0>
+ 2f2:	80 91 2b 02 	lds	r24, 0x022B
+ 2f6:	87 34       	cpi	r24, 0x47	; 71
+ 2f8:	30 f4       	brcc	.+12     	; 0x306 <checkData+0xb0>
+		PORTJ=0X3F;
+ 2fa:	85 e0       	ldi	r24, 0x05	; 5
+ 2fc:	91 e0       	ldi	r25, 0x01	; 1
+ 2fe:	2f e3       	ldi	r18, 0x3F	; 63
+ 300:	fc 01       	movw	r30, r24
+ 302:	20 83       	st	Z, r18
+ 304:	1b c0       	rjmp	.+54     	; 0x33c <checkData+0xe6>
+	}
+	else if(Att_Avg>70 && Att_Avg<=80){
+ 306:	80 91 2b 02 	lds	r24, 0x022B
+ 30a:	87 34       	cpi	r24, 0x47	; 71
+ 30c:	50 f0       	brcs	.+20     	; 0x322 <checkData+0xcc>
+ 30e:	80 91 2b 02 	lds	r24, 0x022B
+ 312:	81 35       	cpi	r24, 0x51	; 81
+ 314:	30 f4       	brcc	.+12     	; 0x322 <checkData+0xcc>
+		PORTJ=0X7F;
+ 316:	85 e0       	ldi	r24, 0x05	; 5
+ 318:	91 e0       	ldi	r25, 0x01	; 1
+ 31a:	2f e7       	ldi	r18, 0x7F	; 127
+ 31c:	fc 01       	movw	r30, r24
+ 31e:	20 83       	st	Z, r18
+ 320:	0d c0       	rjmp	.+26     	; 0x33c <checkData+0xe6>
+	}
+	else if(Att_Avg>80 && Att_Avg<=100){
+ 322:	80 91 2b 02 	lds	r24, 0x022B
+ 326:	81 35       	cpi	r24, 0x51	; 81
+ 328:	48 f0       	brcs	.+18     	; 0x33c <checkData+0xe6>
+ 32a:	80 91 2b 02 	lds	r24, 0x022B
+ 32e:	85 36       	cpi	r24, 0x65	; 101
+ 330:	28 f4       	brcc	.+10     	; 0x33c <checkData+0xe6>
+		PORTJ=0xFF;
+ 332:	85 e0       	ldi	r24, 0x05	; 5
+ 334:	91 e0       	ldi	r25, 0x01	; 1
+ 336:	2f ef       	ldi	r18, 0xFF	; 255
+ 338:	fc 01       	movw	r30, r24
+ 33a:	20 83       	st	Z, r18
+	}
 }
- 456:	df 91       	pop	r29
- 458:	cf 91       	pop	r28
- 45a:	08 95       	ret
+ 33c:	df 91       	pop	r29
+ 33e:	cf 91       	pop	r28
+ 340:	08 95       	ret
 
-0000045c <detect>:
+00000342 <Big_Packet>:
 
 
-void detect(){	
- 45c:	cf 93       	push	r28
- 45e:	df 93       	push	r29
- 460:	00 d0       	rcall	.+0      	; 0x462 <detect+0x6>
- 462:	0f 92       	push	r0
- 464:	cd b7       	in	r28, 0x3d	; 61
- 466:	de b7       	in	r29, 0x3e	; 62
-if(USART1_RX_vect()==0xAA){ //check SYNC byte 1
- 468:	0e 94 46 01 	call	0x28c	; 0x28c <__vector_36>
- 46c:	8a 3a       	cpi	r24, 0xAA	; 170
- 46e:	09 f0       	breq	.+2      	; 0x472 <detect+0x16>
- 470:	64 c0       	rjmp	.+200    	; 0x53a <detect+0xde>
-if(USART1_RX_vect()==0xAA){ //check SYNC byte 2
- 472:	0e 94 46 01 	call	0x28c	; 0x28c <__vector_36>
- 476:	8a 3a       	cpi	r24, 0xAA	; 170
- 478:	09 f0       	breq	.+2      	; 0x47c <detect+0x20>
- 47a:	5f c0       	rjmp	.+190    	; 0x53a <detect+0xde>
-	payloadlength=USART1_RX_vect();
- 47c:	0e 94 46 01 	call	0x28c	; 0x28c <__vector_36>
- 480:	80 93 05 02 	sts	0x0205, r24
-	      if(payloadlength < 169) {                     //Payload length can not be greater than 169
- 484:	80 91 05 02 	lds	r24, 0x0205
- 488:	89 3a       	cpi	r24, 0xA9	; 169
- 48a:	08 f0       	brcs	.+2      	; 0x48e <detect+0x32>
- 48c:	56 c0       	rjmp	.+172    	; 0x53a <detect+0xde>
-      generatedChecksum = 0;
- 48e:	10 92 08 02 	sts	0x0208, r1
-      for(int i = 0; i < payloadlength; i++) {
- 492:	1a 82       	std	Y+2, r1	; 0x02
- 494:	19 82       	std	Y+1, r1	; 0x01
- 496:	19 c0       	rjmp	.+50     	; 0x4ca <detect+0x6e>
-	      payloaddata[i] = USART1_RX_vect();            //Read payload into memory
- 498:	0e 94 46 01 	call	0x28c	; 0x28c <__vector_36>
- 49c:	28 2f       	mov	r18, r24
- 49e:	89 81       	ldd	r24, Y+1	; 0x01
- 4a0:	9a 81       	ldd	r25, Y+2	; 0x02
- 4a2:	8f 5f       	subi	r24, 0xFF	; 255
- 4a4:	9d 4f       	sbci	r25, 0xFD	; 253
- 4a6:	fc 01       	movw	r30, r24
- 4a8:	20 83       	st	Z, r18
-	      generatedChecksum += payloaddata[i];
- 4aa:	89 81       	ldd	r24, Y+1	; 0x01
- 4ac:	9a 81       	ldd	r25, Y+2	; 0x02
- 4ae:	8f 5f       	subi	r24, 0xFF	; 255
- 4b0:	9d 4f       	sbci	r25, 0xFD	; 253
- 4b2:	fc 01       	movw	r30, r24
- 4b4:	90 81       	ld	r25, Z
- 4b6:	80 91 08 02 	lds	r24, 0x0208
- 4ba:	89 0f       	add	r24, r25
- 4bc:	80 93 08 02 	sts	0x0208, r24
-if(USART1_RX_vect()==0xAA){ //check SYNC byte 1
-if(USART1_RX_vect()==0xAA){ //check SYNC byte 2
-	payloadlength=USART1_RX_vect();
-	      if(payloadlength < 169) {                     //Payload length can not be greater than 169
-      generatedChecksum = 0;
-      for(int i = 0; i < payloadlength; i++) {
- 4c0:	89 81       	ldd	r24, Y+1	; 0x01
- 4c2:	9a 81       	ldd	r25, Y+2	; 0x02
- 4c4:	01 96       	adiw	r24, 0x01	; 1
- 4c6:	9a 83       	std	Y+2, r25	; 0x02
- 4c8:	89 83       	std	Y+1, r24	; 0x01
- 4ca:	80 91 05 02 	lds	r24, 0x0205
- 4ce:	28 2f       	mov	r18, r24
- 4d0:	30 e0       	ldi	r19, 0x00	; 0
- 4d2:	89 81       	ldd	r24, Y+1	; 0x01
- 4d4:	9a 81       	ldd	r25, Y+2	; 0x02
- 4d6:	82 17       	cp	r24, r18
- 4d8:	93 07       	cpc	r25, r19
- 4da:	f4 f2       	brlt	.-68     	; 0x498 <detect+0x3c>
-	      payloaddata[i] = USART1_RX_vect();            //Read payload into memory
-	      generatedChecksum += payloaddata[i];
-      }
-	checksum = USART1_RX_vect();                      //Read checksum byte from stream
- 4dc:	0e 94 46 01 	call	0x28c	; 0x28c <__vector_36>
- 4e0:	80 93 09 02 	sts	0x0209, r24
-	generatedChecksum = 255 - generatedChecksum;
- 4e4:	80 91 08 02 	lds	r24, 0x0208
- 4e8:	80 95       	com	r24
- 4ea:	80 93 08 02 	sts	0x0208, r24
+void Big_Packet()
+{
+ 342:	cf 93       	push	r28
+ 344:	df 93       	push	r29
+ 346:	0f 92       	push	r0
+ 348:	0f 92       	push	r0
+ 34a:	cd b7       	in	r28, 0x3d	; 61
+ 34c:	de b7       	in	r29, 0x3e	; 62
+	generatedchecksum = 0;
+ 34e:	10 92 24 02 	sts	0x0224, r1
+	for(int i = 0; i < Plength; i++)
+ 352:	1a 82       	std	Y+2, r1	; 0x02
+ 354:	19 82       	std	Y+1, r1	; 0x01
+ 356:	19 c0       	rjmp	.+50     	; 0x38a <Big_Packet+0x48>
+	{
+		payloadDataB[i]     = USART1_RX_vect();      //Read payload into memory
+ 358:	0e 94 0e 01 	call	0x21c	; 0x21c <__vector_36>
+ 35c:	28 2f       	mov	r18, r24
+ 35e:	89 81       	ldd	r24, Y+1	; 0x01
+ 360:	9a 81       	ldd	r25, Y+2	; 0x02
+ 362:	8d 5f       	subi	r24, 0xFD	; 253
+ 364:	9d 4f       	sbci	r25, 0xFD	; 253
+ 366:	fc 01       	movw	r30, r24
+ 368:	20 83       	st	Z, r18
+		generatedchecksum  += payloadDataB[i] ;
+ 36a:	89 81       	ldd	r24, Y+1	; 0x01
+ 36c:	9a 81       	ldd	r25, Y+2	; 0x02
+ 36e:	8d 5f       	subi	r24, 0xFD	; 253
+ 370:	9d 4f       	sbci	r25, 0xFD	; 253
+ 372:	fc 01       	movw	r30, r24
+ 374:	90 81       	ld	r25, Z
+ 376:	80 91 24 02 	lds	r24, 0x0224
+ 37a:	89 0f       	add	r24, r25
+ 37c:	80 93 24 02 	sts	0x0224, r24
+
+
+void Big_Packet()
+{
+	generatedchecksum = 0;
+	for(int i = 0; i < Plength; i++)
+ 380:	89 81       	ldd	r24, Y+1	; 0x01
+ 382:	9a 81       	ldd	r25, Y+2	; 0x02
+ 384:	01 96       	adiw	r24, 0x01	; 1
+ 386:	9a 83       	std	Y+2, r25	; 0x02
+ 388:	89 83       	std	Y+1, r24	; 0x01
+ 38a:	29 81       	ldd	r18, Y+1	; 0x01
+ 38c:	3a 81       	ldd	r19, Y+2	; 0x02
+ 38e:	80 91 27 02 	lds	r24, 0x0227
+ 392:	90 91 28 02 	lds	r25, 0x0228
+ 396:	28 17       	cp	r18, r24
+ 398:	39 07       	cpc	r19, r25
+ 39a:	f0 f2       	brcs	.-68     	; 0x358 <Big_Packet+0x16>
+	{
+		payloadDataB[i]     = USART1_RX_vect();      //Read payload into memory
+		generatedchecksum  += payloadDataB[i] ;
+	}
+	generatedchecksum = 255 - generatedchecksum;
+ 39c:	80 91 24 02 	lds	r24, 0x0224
+ 3a0:	80 95       	com	r24
+ 3a2:	80 93 24 02 	sts	0x0224, r24
+	checksum  = USART1_RX_vect();
+ 3a6:	0e 94 0e 01 	call	0x21c	; 0x21c <__vector_36>
+ 3aa:	80 93 23 02 	sts	0x0223, r24
 	
-	        if(checksum == generatedChecksum) {
- 4ee:	90 91 09 02 	lds	r25, 0x0209
- 4f2:	80 91 08 02 	lds	r24, 0x0208
- 4f6:	98 17       	cp	r25, r24
- 4f8:	01 f5       	brne	.+64     	; 0x53a <detect+0xde>
-		        for(int i = 0; i < payloadlength; i++) {    // Parse the payload
- 4fa:	1c 82       	std	Y+4, r1	; 0x04
- 4fc:	1b 82       	std	Y+3, r1	; 0x03
- 4fe:	14 c0       	rjmp	.+40     	; 0x528 <detect+0xcc>
-			        if (payloaddata[i]==0x04){ //check attention level and display
- 500:	8b 81       	ldd	r24, Y+3	; 0x03
- 502:	9c 81       	ldd	r25, Y+4	; 0x04
- 504:	8f 5f       	subi	r24, 0xFF	; 255
- 506:	9d 4f       	sbci	r25, 0xFD	; 253
- 508:	fc 01       	movw	r30, r24
- 50a:	80 81       	ld	r24, Z
- 50c:	84 30       	cpi	r24, 0x04	; 4
- 50e:	39 f4       	brne	.+14     	; 0x51e <detect+0xc2>
-			        i++;
- 510:	8b 81       	ldd	r24, Y+3	; 0x03
- 512:	9c 81       	ldd	r25, Y+4	; 0x04
- 514:	01 96       	adiw	r24, 0x01	; 1
- 516:	9c 83       	std	Y+4, r25	; 0x04
- 518:	8b 83       	std	Y+3, r24	; 0x03
-			        checkData();
- 51a:	0e 94 58 01 	call	0x2b0	; 0x2b0 <checkData>
-      }
-	checksum = USART1_RX_vect();                      //Read checksum byte from stream
-	generatedChecksum = 255 - generatedChecksum;
-	
-	        if(checksum == generatedChecksum) {
-		        for(int i = 0; i < payloadlength; i++) {    // Parse the payload
- 51e:	8b 81       	ldd	r24, Y+3	; 0x03
- 520:	9c 81       	ldd	r25, Y+4	; 0x04
- 522:	01 96       	adiw	r24, 0x01	; 1
- 524:	9c 83       	std	Y+4, r25	; 0x04
- 526:	8b 83       	std	Y+3, r24	; 0x03
- 528:	80 91 05 02 	lds	r24, 0x0205
- 52c:	28 2f       	mov	r18, r24
- 52e:	30 e0       	ldi	r19, 0x00	; 0
- 530:	8b 81       	ldd	r24, Y+3	; 0x03
- 532:	9c 81       	ldd	r25, Y+4	; 0x04
- 534:	82 17       	cp	r24, r18
- 536:	93 07       	cpc	r25, r19
- 538:	1c f3       	brlt	.-58     	; 0x500 <detect+0xa4>
-					}
-				}												        
-				}	
+	if(checksum == generatedchecksum)        // Verify Checksum
+ 3ae:	90 91 23 02 	lds	r25, 0x0223
+ 3b2:	80 91 24 02 	lds	r24, 0x0224
+ 3b6:	98 17       	cp	r25, r24
+ 3b8:	09 f0       	breq	.+2      	; 0x3bc <Big_Packet+0x7a>
+ 3ba:	62 c0       	rjmp	.+196    	; 0x480 <Big_Packet+0x13e>
+	{
+		if (payloadDataB[28]==4) //Checking for attention level 
+ 3bc:	80 91 1f 02 	lds	r24, 0x021F
+ 3c0:	84 30       	cpi	r24, 0x04	; 4
+ 3c2:	09 f0       	breq	.+2      	; 0x3c6 <Big_Packet+0x84>
+ 3c4:	5d c0       	rjmp	.+186    	; 0x480 <Big_Packet+0x13e>
+		{
+			if (f<2)
+ 3c6:	80 91 29 02 	lds	r24, 0x0229
+ 3ca:	90 91 2a 02 	lds	r25, 0x022A
+ 3ce:	82 30       	cpi	r24, 0x02	; 2
+ 3d0:	91 05       	cpc	r25, r1
+ 3d2:	a0 f5       	brcc	.+104    	; 0x43c <Big_Packet+0xfa>
+			{
+				attention [k] = payloadDataB[29];
+ 3d4:	80 91 25 02 	lds	r24, 0x0225
+ 3d8:	90 91 26 02 	lds	r25, 0x0226
+ 3dc:	20 91 20 02 	lds	r18, 0x0220
+ 3e0:	80 50       	subi	r24, 0x00	; 0
+ 3e2:	9e 4f       	sbci	r25, 0xFE	; 254
+ 3e4:	fc 01       	movw	r30, r24
+ 3e6:	20 83       	st	Z, r18
+				Temp1 += attention [k];
+ 3e8:	80 91 25 02 	lds	r24, 0x0225
+ 3ec:	90 91 26 02 	lds	r25, 0x0226
+ 3f0:	80 50       	subi	r24, 0x00	; 0
+ 3f2:	9e 4f       	sbci	r25, 0xFE	; 254
+ 3f4:	fc 01       	movw	r30, r24
+ 3f6:	80 81       	ld	r24, Z
+ 3f8:	28 2f       	mov	r18, r24
+ 3fa:	30 e0       	ldi	r19, 0x00	; 0
+ 3fc:	40 e0       	ldi	r20, 0x00	; 0
+ 3fe:	50 e0       	ldi	r21, 0x00	; 0
+ 400:	80 91 2c 02 	lds	r24, 0x022C
+ 404:	90 91 2d 02 	lds	r25, 0x022D
+ 408:	a0 91 2e 02 	lds	r26, 0x022E
+ 40c:	b0 91 2f 02 	lds	r27, 0x022F
+ 410:	82 0f       	add	r24, r18
+ 412:	93 1f       	adc	r25, r19
+ 414:	a4 1f       	adc	r26, r20
+ 416:	b5 1f       	adc	r27, r21
+ 418:	80 93 2c 02 	sts	0x022C, r24
+ 41c:	90 93 2d 02 	sts	0x022D, r25
+ 420:	a0 93 2e 02 	sts	0x022E, r26
+ 424:	b0 93 2f 02 	sts	0x022F, r27
+				f++;
+ 428:	80 91 29 02 	lds	r24, 0x0229
+ 42c:	90 91 2a 02 	lds	r25, 0x022A
+ 430:	01 96       	adiw	r24, 0x01	; 1
+ 432:	90 93 2a 02 	sts	0x022A, r25
+ 436:	80 93 29 02 	sts	0x0229, r24
+ 43a:	22 c0       	rjmp	.+68     	; 0x480 <Big_Packet+0x13e>
+			}
+			else
+			{
+				Att_Avg = Temp1/2;
+ 43c:	80 91 2c 02 	lds	r24, 0x022C
+ 440:	90 91 2d 02 	lds	r25, 0x022D
+ 444:	a0 91 2e 02 	lds	r26, 0x022E
+ 448:	b0 91 2f 02 	lds	r27, 0x022F
+ 44c:	22 e0       	ldi	r18, 0x02	; 2
+ 44e:	30 e0       	ldi	r19, 0x00	; 0
+ 450:	40 e0       	ldi	r20, 0x00	; 0
+ 452:	50 e0       	ldi	r21, 0x00	; 0
+ 454:	bc 01       	movw	r22, r24
+ 456:	cd 01       	movw	r24, r26
+ 458:	0e 94 78 02 	call	0x4f0	; 0x4f0 <__divmodsi4>
+ 45c:	da 01       	movw	r26, r20
+ 45e:	c9 01       	movw	r24, r18
+ 460:	80 93 2b 02 	sts	0x022B, r24
+				checkData();
+ 464:	0e 94 2b 01 	call	0x256	; 0x256 <checkData>
+				f=0;
+ 468:	10 92 2a 02 	sts	0x022A, r1
+ 46c:	10 92 29 02 	sts	0x0229, r1
+				Temp1=0;
+ 470:	10 92 2c 02 	sts	0x022C, r1
+ 474:	10 92 2d 02 	sts	0x022D, r1
+ 478:	10 92 2e 02 	sts	0x022E, r1
+ 47c:	10 92 2f 02 	sts	0x022F, r1
+			}
+		}
+	}
 }	
-}
-} 
- 53a:	0f 90       	pop	r0
- 53c:	0f 90       	pop	r0
- 53e:	0f 90       	pop	r0
- 540:	0f 90       	pop	r0
- 542:	df 91       	pop	r29
- 544:	cf 91       	pop	r28
- 546:	08 95       	ret
+ 480:	0f 90       	pop	r0
+ 482:	0f 90       	pop	r0
+ 484:	df 91       	pop	r29
+ 486:	cf 91       	pop	r28
+ 488:	08 95       	ret
 
-00000548 <init_devices>:
-//Function To Initialize all The Devices
+0000048a <init_devices>:
+
 void init_devices(void)
 {
- 548:	cf 93       	push	r28
- 54a:	df 93       	push	r29
- 54c:	cd b7       	in	r28, 0x3d	; 61
- 54e:	de b7       	in	r29, 0x3e	; 62
+ 48a:	cf 93       	push	r28
+ 48c:	df 93       	push	r29
+ 48e:	cd b7       	in	r28, 0x3d	; 61
+ 490:	de b7       	in	r29, 0x3e	; 62
 	cli(); //Clears the global interrupts
- 550:	f8 94       	cli
+ 492:	f8 94       	cli
 	port_init();  //Initializes all the ports
- 552:	0e 94 e9 00 	call	0x1d2	; 0x1d2 <port_init>
-	uart1_init(); //Initailize UART1 for serial communiaction
- 556:	0e 94 24 01 	call	0x248	; 0x248 <uart1_init>
+ 494:	0e 94 20 01 	call	0x240	; 0x240 <port_init>
+	uart1_init(); //Initialize UART1 for serial communication
+ 498:	0e 94 ec 00 	call	0x1d8	; 0x1d8 <uart1_init>
 	sei();   //Enables the global interrupts
- 55a:	78 94       	sei
+ 49c:	78 94       	sei
 }
- 55c:	df 91       	pop	r29
- 55e:	cf 91       	pop	r28
- 560:	08 95       	ret
+ 49e:	df 91       	pop	r29
+ 4a0:	cf 91       	pop	r28
+ 4a2:	08 95       	ret
 
-00000562 <main>:
+000004a4 <main>:
 
-//Main Function
-int main(void)
+
+void main(void)                     // Main Function
 {
- 562:	cf 93       	push	r28
- 564:	df 93       	push	r29
- 566:	cd b7       	in	r28, 0x3d	; 61
- 568:	de b7       	in	r29, 0x3e	; 62
+ 4a4:	cf 93       	push	r28
+ 4a6:	df 93       	push	r29
+ 4a8:	0f 92       	push	r0
+ 4aa:	0f 92       	push	r0
+ 4ac:	cd b7       	in	r28, 0x3d	; 61
+ 4ae:	de b7       	in	r29, 0x3e	; 62
 	init_devices();
- 56a:	0e 94 a4 02 	call	0x548	; 0x548 <init_devices>
-	while(1){
-		detect();
- 56e:	0e 94 2e 02 	call	0x45c	; 0x45c <detect>
+ 4b0:	0e 94 45 02 	call	0x48a	; 0x48a <init_devices>
+	int j=0;
+ 4b4:	1a 82       	std	Y+2, r1	; 0x02
+ 4b6:	19 82       	std	Y+1, r1	; 0x01
+ 4b8:	01 c0       	rjmp	.+2      	; 0x4bc <main+0x18>
+				{
+					Big_Packet ();
+				}
+			}
+		}
 	}
- 572:	fd cf       	rjmp	.-6      	; 0x56e <main+0xc>
+ 4ba:	00 00       	nop
+	init_devices();
+	int j=0;
+	while (1)
+	{
+		
+		if(USART1_RX_vect() == 170)        // AA 1 st Sync data
+ 4bc:	0e 94 0e 01 	call	0x21c	; 0x21c <__vector_36>
+ 4c0:	8a 3a       	cpi	r24, 0xAA	; 170
+ 4c2:	d9 f7       	brne	.-10     	; 0x4ba <main+0x16>
+		{
+			if(USART1_RX_vect() == 170)      // AA 2 st Sync data
+ 4c4:	0e 94 0e 01 	call	0x21c	; 0x21c <__vector_36>
+ 4c8:	8a 3a       	cpi	r24, 0xAA	; 170
+ 4ca:	b9 f7       	brne	.-18     	; 0x4ba <main+0x16>
+			{
+				Plength = USART1_RX_vect();
+ 4cc:	0e 94 0e 01 	call	0x21c	; 0x21c <__vector_36>
+ 4d0:	88 2f       	mov	r24, r24
+ 4d2:	90 e0       	ldi	r25, 0x00	; 0
+ 4d4:	90 93 28 02 	sts	0x0228, r25
+ 4d8:	80 93 27 02 	sts	0x0227, r24
+				if(Plength == 32)   // Big Packet
+ 4dc:	80 91 27 02 	lds	r24, 0x0227
+ 4e0:	90 91 28 02 	lds	r25, 0x0228
+ 4e4:	80 32       	cpi	r24, 0x20	; 32
+ 4e6:	91 05       	cpc	r25, r1
+ 4e8:	41 f7       	brne	.-48     	; 0x4ba <main+0x16>
+				{
+					Big_Packet ();
+ 4ea:	0e 94 a1 01 	call	0x342	; 0x342 <Big_Packet>
+				}
+			}
+		}
+	}
+ 4ee:	e5 cf       	rjmp	.-54     	; 0x4ba <main+0x16>
 
-00000574 <_exit>:
- 574:	f8 94       	cli
+000004f0 <__divmodsi4>:
+ 4f0:	97 fb       	bst	r25, 7
+ 4f2:	09 2e       	mov	r0, r25
+ 4f4:	05 26       	eor	r0, r21
+ 4f6:	0e d0       	rcall	.+28     	; 0x514 <__divmodsi4_neg1>
+ 4f8:	57 fd       	sbrc	r21, 7
+ 4fa:	04 d0       	rcall	.+8      	; 0x504 <__divmodsi4_neg2>
+ 4fc:	14 d0       	rcall	.+40     	; 0x526 <__udivmodsi4>
+ 4fe:	0a d0       	rcall	.+20     	; 0x514 <__divmodsi4_neg1>
+ 500:	00 1c       	adc	r0, r0
+ 502:	38 f4       	brcc	.+14     	; 0x512 <__divmodsi4_exit>
 
-00000576 <__stop_program>:
- 576:	ff cf       	rjmp	.-2      	; 0x576 <__stop_program>
+00000504 <__divmodsi4_neg2>:
+ 504:	50 95       	com	r21
+ 506:	40 95       	com	r20
+ 508:	30 95       	com	r19
+ 50a:	21 95       	neg	r18
+ 50c:	3f 4f       	sbci	r19, 0xFF	; 255
+ 50e:	4f 4f       	sbci	r20, 0xFF	; 255
+ 510:	5f 4f       	sbci	r21, 0xFF	; 255
+
+00000512 <__divmodsi4_exit>:
+ 512:	08 95       	ret
+
+00000514 <__divmodsi4_neg1>:
+ 514:	f6 f7       	brtc	.-4      	; 0x512 <__divmodsi4_exit>
+ 516:	90 95       	com	r25
+ 518:	80 95       	com	r24
+ 51a:	70 95       	com	r23
+ 51c:	61 95       	neg	r22
+ 51e:	7f 4f       	sbci	r23, 0xFF	; 255
+ 520:	8f 4f       	sbci	r24, 0xFF	; 255
+ 522:	9f 4f       	sbci	r25, 0xFF	; 255
+ 524:	08 95       	ret
+
+00000526 <__udivmodsi4>:
+ 526:	a1 e2       	ldi	r26, 0x21	; 33
+ 528:	1a 2e       	mov	r1, r26
+ 52a:	aa 1b       	sub	r26, r26
+ 52c:	bb 1b       	sub	r27, r27
+ 52e:	fd 01       	movw	r30, r26
+ 530:	0d c0       	rjmp	.+26     	; 0x54c <__udivmodsi4_ep>
+
+00000532 <__udivmodsi4_loop>:
+ 532:	aa 1f       	adc	r26, r26
+ 534:	bb 1f       	adc	r27, r27
+ 536:	ee 1f       	adc	r30, r30
+ 538:	ff 1f       	adc	r31, r31
+ 53a:	a2 17       	cp	r26, r18
+ 53c:	b3 07       	cpc	r27, r19
+ 53e:	e4 07       	cpc	r30, r20
+ 540:	f5 07       	cpc	r31, r21
+ 542:	20 f0       	brcs	.+8      	; 0x54c <__udivmodsi4_ep>
+ 544:	a2 1b       	sub	r26, r18
+ 546:	b3 0b       	sbc	r27, r19
+ 548:	e4 0b       	sbc	r30, r20
+ 54a:	f5 0b       	sbc	r31, r21
+
+0000054c <__udivmodsi4_ep>:
+ 54c:	66 1f       	adc	r22, r22
+ 54e:	77 1f       	adc	r23, r23
+ 550:	88 1f       	adc	r24, r24
+ 552:	99 1f       	adc	r25, r25
+ 554:	1a 94       	dec	r1
+ 556:	69 f7       	brne	.-38     	; 0x532 <__udivmodsi4_loop>
+ 558:	60 95       	com	r22
+ 55a:	70 95       	com	r23
+ 55c:	80 95       	com	r24
+ 55e:	90 95       	com	r25
+ 560:	9b 01       	movw	r18, r22
+ 562:	ac 01       	movw	r20, r24
+ 564:	bd 01       	movw	r22, r26
+ 566:	cf 01       	movw	r24, r30
+ 568:	08 95       	ret
+
+0000056a <_exit>:
+ 56a:	f8 94       	cli
+
+0000056c <__stop_program>:
+ 56c:	ff cf       	rjmp	.-2      	; 0x56c <__stop_program>
