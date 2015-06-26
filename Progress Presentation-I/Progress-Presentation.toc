@@ -1,0 +1,12 @@
+\beamer@endinputifotherversion {3.36pt}
+\beamer@sectionintoc {1}{Overview of Project}{2}{0}{1}
+\beamer@sectionintoc {2}{Overview of Task}{3}{0}{2}
+\beamer@sectionintoc {3}{Introduction}{4}{0}{3}
+\beamer@sectionintoc {4}{Introduction}{5}{0}{4}
+\beamer@sectionintoc {5}{Task 1:Bluetooth Module}{6}{0}{5}
+\beamer@sectionintoc {6}{Task 2:Processing Brainwaves}{7}{0}{6}
+\beamer@sectionintoc {7}{Task 3:Interfacing Sensor}{8}{0}{7}
+\beamer@sectionintoc {8}{Task 4:Attention Level detection}{9}{0}{8}
+\beamer@sectionintoc {9}{Challenges Faced}{10}{0}{9}
+\beamer@sectionintoc {10}{Future Plans}{11}{0}{10}
+\beamer@sectionintoc {11}{Thank You}{12}{0}{11}
