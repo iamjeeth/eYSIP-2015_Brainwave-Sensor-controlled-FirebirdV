@@ -1,17 +1,16 @@
 /*
- * Attention_level_LED_BarGraph.c
- * This code glows LED bar graph depending upon the attention level of the brain of user. 
- * As attention is high number of LEDs glowing will be more.
+ * This code glows LED bar graph depending upon the meditation level of the brain of user. 
+ * As meditation is high number of LEDs glowing will be more.
  * 
  */ 
 #define F_CPU 14745600
 #include<avr/io.h>
 #include<avr/interrupt.h>
 #include<util/delay.h>
-volatile unsigned char attention[3]={0};
+volatile unsigned char Meditation[3]={0};
 volatile unsigned char payloadDataB[32] = {0};
 volatile unsigned char checksum=0,generatedchecksum=0;
-volatile unsigned char Att_Avg;
+volatile unsigned char Med_Avg;
 unsigned int Plength;
 unsigned int f,k=0;
 long Temp1;
@@ -68,28 +67,28 @@ void port_init()
 }
 //function for detecting various levels of attention 
 void checkData(){
-	if(Att_Avg>=1 && Att_Avg<=10){  //Mind wandering level
+	if(Med_Avg>=1 && Med_Avg<=10){  //Poor meditation level
 		PORTJ=0X01;
 	}
-	else if(Att_Avg>10 && Att_Avg<=30){  //poor attention level
+	else if(Med_Avg>10 && Med_Avg<=30){  //Poor meditation level
 		PORTJ=0x03;
 	}
-	else if(Att_Avg>30 && Att_Avg<=40){ //Attention level building up
+	else if(Med_Avg>30 && Med_Avg<=40){ //Meditation level building up
 		PORTJ=0X07;
 	}
-	else if(Att_Avg>40 && Att_Avg<=50){  //neutral
+	else if(Med_Avg>40 && Med_Avg<=50){  //Neutral
 		PORTJ=0X0F;
 	}
-	else if(Att_Avg>50 && Att_Avg<=60){  //neutral
+	else if(Med_Avg>50 && Med_Avg<=60){  //Neutral
 		PORTJ=0X1F;
 	}
-	else if(Att_Avg>60 && Att_Avg<=70){  //Slightly elevated
+	else if(Med_Avg>60 && Med_Avg<=70){  //Slightly elevated
 		PORTJ=0X3F;
 	}
-	else if(Att_Avg>70 && Att_Avg<=80){  //Slightly elevated
+	else if(Med_Avg>70 && Med_Avg<=80){  //Slightly elevated
 		PORTJ=0X7F;
 	}
-	else if(Att_Avg>80 && Att_Avg<=100){  //elevated
+	else if(Med_Avg>80 && Med_Avg<=100){ //Elevated
 		PORTJ=0xFF;
 	}
 }
@@ -108,17 +107,17 @@ void Big_Packet()
 	
 	if(checksum == generatedchecksum)        // Verify Checksum
 	{
-		if (payloadDataB[28]==4) //Checking for attention level 
+		if (payloadDataB[30]==5) //Checking for meditation
 		{
 			if (f<2)
 			{
-				attention [k] = payloadDataB[29];  //Attention level indication
-				Temp1 += attention [k];
+				Meditation [k] = payloadDataB[31]; // meditation level indication
+				Temp1 += Meditation [k];
 				f++;
 			}
 			else
 			{
-				Att_Avg = Temp1/2;
+				Med_Avg = Temp1/2;
 				checkData();
 				f=0;
 				Temp1=0;

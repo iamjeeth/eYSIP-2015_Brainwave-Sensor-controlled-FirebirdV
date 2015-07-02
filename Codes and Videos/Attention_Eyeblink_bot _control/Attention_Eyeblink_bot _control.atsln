@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Attention_Eyeblink_bot _control", "Attention_Eyeblink_bot _control\Attention_Eyeblink_bot _control.cproj", "{43B6A0E8-9A28-49DD-9AD0-2863E91D2D1B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43B6A0E8-9A28-49DD-9AD0-2863E91D2D1B}.Debug|AVR.ActiveCfg = Debug|AVR
+		{43B6A0E8-9A28-49DD-9AD0-2863E91D2D1B}.Debug|AVR.Build.0 = Debug|AVR
+		{43B6A0E8-9A28-49DD-9AD0-2863E91D2D1B}.Release|AVR.ActiveCfg = Release|AVR
+		{43B6A0E8-9A28-49DD-9AD0-2863E91D2D1B}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

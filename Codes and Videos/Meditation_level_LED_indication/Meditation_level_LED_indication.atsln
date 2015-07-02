@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Meditation_level_LED_indication", "Meditation_level_LED_indication\Meditation_level_LED_indication.cproj", "{EC864358-B31C-4E22-839B-542E22603ABE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC864358-B31C-4E22-839B-542E22603ABE}.Debug|AVR.ActiveCfg = Debug|AVR
+		{EC864358-B31C-4E22-839B-542E22603ABE}.Debug|AVR.Build.0 = Debug|AVR
+		{EC864358-B31C-4E22-839B-542E22603ABE}.Release|AVR.ActiveCfg = Release|AVR
+		{EC864358-B31C-4E22-839B-542E22603ABE}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
