@@ -69,6 +69,33 @@ void port_init()
 	LED_bargraph_config();
 }
 
+void checkData(){
+	if(Att_Avg>=1 && Att_Avg<=10){  //Mind wandering level
+		PORTJ=0X01;
+	}
+	else if(Att_Avg>10 && Att_Avg<=30){  //poor attention level
+		PORTJ=0x03;
+	}
+	else if(Att_Avg>30 && Att_Avg<=40){ //Attention level building up
+		PORTJ=0X07;
+	}
+	else if(Att_Avg>40 && Att_Avg<=50){  //neutral
+		PORTJ=0X0F;
+	}
+	else if(Att_Avg>50 && Att_Avg<=60){  //neutral
+		PORTJ=0X1F;
+	}
+	else if(Att_Avg>60 && Att_Avg<=70){  //Slightly elevated
+		PORTJ=0X3F;
+	}
+	else if(Att_Avg>70 && Att_Avg<=80){  //Slightly elevated
+		PORTJ=0X7F;
+	}
+	else if(Att_Avg>80 && Att_Avg<=100){  //elevated
+		PORTJ=0xFF;
+	}
+}
+
 void Big_Packet()
 {
 	generatedchecksum = 0;
@@ -93,6 +120,7 @@ void Big_Packet()
 			else
 			{
 				Att_Avg = Temp1/2;
+				checkData();
 				lcd_cursor(1,1);
 				lcd_string("Attention:");
 				lcd_print(1,12,Att_Avg,3);
@@ -117,6 +145,8 @@ void init_devices(void)
 void main(void)                     // Main Function
 {
 	init_devices();
+	lcd_set_4bit();
+	lcd_init();
 	int j=0;
 	while (1)
 	{
