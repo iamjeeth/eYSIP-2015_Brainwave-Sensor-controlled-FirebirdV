@@ -6,11 +6,14 @@
 * Meditation level indication using LED bar graph
 * Eye-blink detection
 * Controlling Firebird V using attention level and eye-blink
+
 ####Tutorials folder contains:
 * Basics about EEG and brainwaves
 * Configuration of Bluetooth module
 * Learning about Neurosky Headset
 * Analysing and processing data packets
 * Understanding the code
+
 ####It has Final Project Report.
+
 ####It has Presentations about the project.
