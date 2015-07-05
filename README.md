@@ -1,2 +1,2 @@
-# eYSIP-2015_Brainwave-Sensor-controlled-FirebirdV
-eYSIP-2015_Brainwave-Sensor-controlled-FirebirdV
+eYSIP-2015
+Controlling Firebird V using EEG(Brainwave) sensor
