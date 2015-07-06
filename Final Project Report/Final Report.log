@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.5.22)  5 JUL 2015 19:31
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.5.22)  6 JUL 2015 16:49
 entering extended mode
 **Final*Report.tex
 
@@ -509,7 +509,7 @@ Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
  [2]
-<images/Mentally_challenged.jpg, id=24, 756.8275pt x 181.67876pt>
+<images/Mentally_challenged.jpg, id=25, 756.8275pt x 181.67876pt>
 File: images/Mentally_challenged.jpg Graphic file (type jpg)
 
 <use images/Mentally_challenged.jpg>
@@ -521,7 +521,7 @@ Overfull \hbox (4.24329pt too wide) in paragraph at lines 124--125
  [] 
  []
 
-<images/Brain-anatomy.jpg, id=25, 514.92375pt x 304.13625pt>
+<images/Brain-anatomy.jpg, id=26, 514.92375pt x 304.13625pt>
 File: images/Brain-anatomy.jpg Graphic file (type jpg)
 
 <use images/Brain-anatomy.jpg>
@@ -566,7 +566,7 @@ Overfull \hbox (7.59998pt too wide) in paragraph at lines 162--231
 [] 
  []
 
-[4] <images/Block_diagram.jpg, id=53, 1244.65pt x 1760.5775pt>
+[4] <images/Block_diagram.jpg, id=54, 1244.65pt x 1760.5775pt>
 File: images/Block_diagram.jpg Graphic file (type jpg)
 
 <use images/Block_diagram.jpg>
@@ -592,7 +592,7 @@ Missing character: There is no ˜ in font cmr10!
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
- [7] <images/Flowchart1.jpg, id=86, 1244.65pt x 1760.5775pt>
+ [7] <images/Flowchart1.jpg, id=87, 1244.65pt x 1760.5775pt>
 File: images/Flowchart1.jpg Graphic file (type jpg)
 
 <use images/Flowchart1.jpg>
@@ -603,7 +603,7 @@ Overfull \hbox (61.15201pt too wide) in paragraph at lines 350--351
  [] 
  []
 
-<images/Flowchart2.jpg, id=87, 1244.65pt x 1760.5775pt>
+<images/Flowchart2.jpg, id=88, 1244.65pt x 1760.5775pt>
 File: images/Flowchart2.jpg Graphic file (type jpg)
 
 <use images/Flowchart2.jpg>
@@ -615,7 +615,7 @@ Overfull \hbox (61.15201pt too wide) in paragraph at lines 354--355
  []
 
 [8 <A:/eYSIP-2015_Brainwave-Sensor-controlled-FirebirdV/Final Project Report/im
-ages/Flowchart1.jpg>] <images/Flowchart3.jpg, id=93, 1244.65pt x 1760.5775pt>
+ages/Flowchart1.jpg>] <images/Flowchart3.jpg, id=94, 1244.65pt x 1760.5775pt>
 File: images/Flowchart3.jpg Graphic file (type jpg)
 
 <use images/Flowchart3.jpg>
@@ -663,9 +663,9 @@ C:/Program Files (x86)/MiKTeX 2.91/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:
 rogram Files (x86)/MiKTeX 2.91/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Pro
 gram Files (x86)/MiKTeX 2.91/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Progr
 am Files (x86)/MiKTeX 2.91/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on "Final Report.pdf" (14 pages, 1287846 bytes).
+Output written on "Final Report.pdf" (14 pages, 1288174 bytes).
 PDF statistics:
- 178 PDF objects out of 1000 (max. 8388607)
+ 179 PDF objects out of 1000 (max. 8388607)
  62 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -199,7 +199,7 @@ void run(){
 		 }
 	 else if(Att_Avg>10 && Att_Avg<=30){ //Poor level of attention
 		 PORTJ=0x03;
-		 velocity(170,170);
+		 velocity(190,190);
 		 forward();
 	 }
 	 else if(Att_Avg>30 && Att_Avg<=40){ //Attention level building up
@@ -354,17 +354,14 @@ void run(){
 		   buzzer_on();
 		   _delay_ms(500);
 		   buzzer_off();
-		   switch (p){
-		   case 2:   //two eye-blink take left turn
-			   stop();
-			   velocity(0,170);
-		       forward();
-			   break;
-		   case 3:  //third eye-blink detected move forward
-		       stop();
-		       run();
-			   p=0;
-			   break;
+		  if(p==2){
+		stop();
+		velocity(240,240);
+		left();
+		_delay_ms(650);
+		stop();
+		run();
+		p=0;
 		   }  	  	  
 	   }
        else
