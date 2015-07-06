@@ -1,4 +1,8 @@
 /*
+Members: Omkar Rajendra Mohite
+         Ashish Kumar Jain
+Mentors: Mehul Makwana
+         Rutuja Ekatpure
 Program to control Firebird V using attention level and eye-blink of a person
 Attention level varies the velocity of the robot
 Two Eye-blink will result in slow left turn and further one eye-blink will give forward motion depending upon the
@@ -25,7 +29,7 @@ volatile unsigned int ShaftCountRight,ShaftCountLeft,flag;
  {
 	 DDRJ = 0xFF;  //PORT J is configured as output
 	 PORTJ = 0x00; //Output is set to 0
-	 
+
 	 //LCD
 // 	 DDRC = DDRC | 0xF7;
 // 	 PORTC = PORTC & 0x80;
@@ -232,28 +236,28 @@ void run(){
 		 velocity(240,240);
 		 forward();
 	 }
-} 
- 
- 
+}
+
+
  void checkData(){ //if two eye-blinks are not detected vary the velocity depending upon the attention level
 	 if(p<2){
-	 run();	
-	 }	 	  
+	 run();
+	 }
  }
-	 
+
  //Function performed when payload length of 0x04 is detected
  void Small_Packet ()
  {
    generatedchecksum = 0;
    for(int i = 0; i < Plength; i++)
-   { 
+   {
      payloadDataS[i] = USART1_RX_vect();      //Read payload into memory
      generatedchecksum  += payloadDataS[i] ;
    }
    generatedchecksum = 255 - generatedchecksum;
    checksum  = USART1_RX_vect();
    if(checksum == generatedchecksum)        // Verify Checksum
-   { 	   
+   {
      if (j<100)								//Take 100 data packets sample
      {
        Raw_data  = ((payloadDataS[2] <<8)| payloadDataS[3]); //check for raw data values
@@ -262,7 +266,7 @@ void run(){
          Raw_data = (((~Raw_data)&0xFFF)+1);
        }
        else
-       {	   
+       {
          Raw_data = (Raw_data&0xFFF);
        }
        Temp += Raw_data;
@@ -274,7 +278,7 @@ void run(){
      }
    }
  }
- 
+
  void Big_Packet()
  {
 	  generatedchecksum = 0;
@@ -285,10 +289,10 @@ void run(){
 	  }
 	  generatedchecksum = 255 - generatedchecksum;
 	  checksum  = USART1_RX_vect();
-	  
+
 	  if(checksum == generatedchecksum)        // Varify Checksum
 	  {
-		   if (payloadDataB[28]==4)				//check for attention signal 
+		   if (payloadDataB[28]==4)				//check for attention signal
 		   {
 			   if (f<2)
 			   {
@@ -328,23 +332,23 @@ void run(){
      }
      else
      {
-       Temp_Avg = Temp_Avg/2;		//taking average 
+       Temp_Avg = Temp_Avg/2;		//taking average
        if (Temp_Avg<EEG_AVG)
        {
          On_Flag=1;Off_Flag=0;
        }
        n=0;Temp_Avg=0;
-     } 
-   }             
+     }
+   }
    Eye_Blink ();
    j=0;
    Temp=0;
-    
+
    }
  //function for indication of eye-bling and raw values when removed from head
  void Eye_Blink ()
  {
-   if (Eye_Enable)         
+   if (Eye_Enable)
    {
      if (On_Flag==1 && Off_Flag==0)
      {
@@ -362,30 +366,30 @@ void run(){
 		stop();
 		run();
 		p=0;
-		   }  	  	  
+		   }
 	   }
        else
        {
          if (Avg_Raw>350)  //Raw data values indication
          {
 			buzzer_on();_delay_ms(50);buzzer_off(); //Sensor removed from head, bot stops.
-			stop();		
+			stop();
            On_Flag==0;Off_Flag==1;
-         }	 
+         }
        }
-	   }	   
-     
+	   }
+
 	 else
      {
        PORTJ=0x00;
-     }  
-	 }	      
+     }
+	 }
    else    //Device is paired
    {
      PORTJ=0x01;
 	 stop();
    }
-	    
+
  }
 void init_devices(void)
 {
@@ -401,7 +405,7 @@ void init_devices(void)
 	 int j=0;
 	 while (1)
 	 {
-		 
+
 	 if(USART1_RX_vect() == 170)        // AA 1 st Sync data
 	 {
 		 if(USART1_RX_vect() == 170)      // AA 2 st Sync data
@@ -409,14 +413,14 @@ void init_devices(void)
 			 Plength = USART1_RX_vect();
 			 if(Plength == 4)   // Small Packet
 			 {
-				 
+
 				 Small_Packet ();
 			 }
 			 else if(Plength == 32)   // Big Packet
 			 {
 				 Big_Packet ();
 			 }
-		 }			 
+		 }
 	 }
-     } 
+     }
 }

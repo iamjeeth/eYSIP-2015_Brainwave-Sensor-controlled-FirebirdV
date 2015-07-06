@@ -353,7 +353,7 @@ void checkData(){
  258:	df 93       	push	r29
  25a:	cd b7       	in	r28, 0x3d	; 61
  25c:	de b7       	in	r29, 0x3e	; 62
-	if(Att_Avg>=1 && Att_Avg<=10){
+	if(Att_Avg>=1 && Att_Avg<=10){  //Mind wandering level
  25e:	80 91 2b 02 	lds	r24, 0x022B
  262:	88 23       	and	r24, r24
  264:	51 f0       	breq	.+20     	; 0x27a <checkData+0x24>
@@ -368,7 +368,7 @@ void checkData(){
  276:	20 83       	st	Z, r18
  278:	61 c0       	rjmp	.+194    	; 0x33c <checkData+0xe6>
 	}
-	else if(Att_Avg>10 && Att_Avg<=30){
+	else if(Att_Avg>10 && Att_Avg<=30){  //poor attention level
  27a:	80 91 2b 02 	lds	r24, 0x022B
  27e:	8b 30       	cpi	r24, 0x0B	; 11
  280:	50 f0       	brcs	.+20     	; 0x296 <checkData+0x40>
@@ -383,7 +383,7 @@ void checkData(){
  292:	20 83       	st	Z, r18
  294:	53 c0       	rjmp	.+166    	; 0x33c <checkData+0xe6>
 	}
-	else if(Att_Avg>30 && Att_Avg<=40){
+	else if(Att_Avg>30 && Att_Avg<=40){ //Attention level building up
  296:	80 91 2b 02 	lds	r24, 0x022B
  29a:	8f 31       	cpi	r24, 0x1F	; 31
  29c:	50 f0       	brcs	.+20     	; 0x2b2 <checkData+0x5c>
@@ -398,7 +398,7 @@ void checkData(){
  2ae:	20 83       	st	Z, r18
  2b0:	45 c0       	rjmp	.+138    	; 0x33c <checkData+0xe6>
 	}
-	else if(Att_Avg>40 && Att_Avg<=50){
+	else if(Att_Avg>40 && Att_Avg<=50){  //neutral
  2b2:	80 91 2b 02 	lds	r24, 0x022B
  2b6:	89 32       	cpi	r24, 0x29	; 41
  2b8:	50 f0       	brcs	.+20     	; 0x2ce <checkData+0x78>
@@ -413,7 +413,7 @@ void checkData(){
  2ca:	20 83       	st	Z, r18
  2cc:	37 c0       	rjmp	.+110    	; 0x33c <checkData+0xe6>
 	}
-	else if(Att_Avg>50 && Att_Avg<=60){
+	else if(Att_Avg>50 && Att_Avg<=60){  //neutral
  2ce:	80 91 2b 02 	lds	r24, 0x022B
  2d2:	83 33       	cpi	r24, 0x33	; 51
  2d4:	50 f0       	brcs	.+20     	; 0x2ea <checkData+0x94>
@@ -428,7 +428,7 @@ void checkData(){
  2e6:	20 83       	st	Z, r18
  2e8:	29 c0       	rjmp	.+82     	; 0x33c <checkData+0xe6>
 	}
-	else if(Att_Avg>60 && Att_Avg<=70){
+	else if(Att_Avg>60 && Att_Avg<=70){  //Slightly elevated
  2ea:	80 91 2b 02 	lds	r24, 0x022B
  2ee:	8d 33       	cpi	r24, 0x3D	; 61
  2f0:	50 f0       	brcs	.+20     	; 0x306 <checkData+0xb0>
@@ -443,7 +443,7 @@ void checkData(){
  302:	20 83       	st	Z, r18
  304:	1b c0       	rjmp	.+54     	; 0x33c <checkData+0xe6>
 	}
-	else if(Att_Avg>70 && Att_Avg<=80){
+	else if(Att_Avg>70 && Att_Avg<=80){  //Slightly elevated
  306:	80 91 2b 02 	lds	r24, 0x022B
  30a:	87 34       	cpi	r24, 0x47	; 71
  30c:	50 f0       	brcs	.+20     	; 0x322 <checkData+0xcc>
@@ -458,7 +458,7 @@ void checkData(){
  31e:	20 83       	st	Z, r18
  320:	0d c0       	rjmp	.+26     	; 0x33c <checkData+0xe6>
 	}
-	else if(Att_Avg>80 && Att_Avg<=100){
+	else if(Att_Avg>80 && Att_Avg<=100){  //elevated
  322:	80 91 2b 02 	lds	r24, 0x022B
  326:	81 35       	cpi	r24, 0x51	; 81
  328:	48 f0       	brcs	.+18     	; 0x33c <checkData+0xe6>
@@ -564,7 +564,7 @@ void Big_Packet()
  3d0:	91 05       	cpc	r25, r1
  3d2:	a0 f5       	brcc	.+104    	; 0x43c <Big_Packet+0xfa>
 			{
-				attention [k] = payloadDataB[29];
+				attention [k] = payloadDataB[29];  //Attention level indication
  3d4:	80 91 25 02 	lds	r24, 0x0225
  3d8:	90 91 26 02 	lds	r25, 0x0226
  3dc:	20 91 20 02 	lds	r18, 0x0220

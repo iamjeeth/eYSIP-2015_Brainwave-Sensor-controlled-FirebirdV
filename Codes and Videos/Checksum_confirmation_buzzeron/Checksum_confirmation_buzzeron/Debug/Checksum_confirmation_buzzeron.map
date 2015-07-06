@@ -585,22 +585,22 @@ LOAD c:/program files (x86)/atmel/atmel studio 6.0/extensions/atmel/avrgcc/3.4.0
  .debug_abbrev  0x000001e1       0x14 c:/program files (x86)/atmel/atmel studio 6.0/extensions/atmel/avrgcc/3.4.0.65/avrtoolchain/bin/../lib/gcc/avr/4.6.2/avr6\libgcc.a(_copy_data.o)
  .debug_abbrev  0x000001f5       0x14 c:/program files (x86)/atmel/atmel studio 6.0/extensions/atmel/avrgcc/3.4.0.65/avrtoolchain/bin/../lib/gcc/avr/4.6.2/avr6\libgcc.a(_clear_bss.o)
 
-.debug_line     0x00000000      0x72c
+.debug_line     0x00000000      0x72a
  *(.debug_line)
- .debug_line    0x00000000      0x4e9 Checksum_confirmation_buzzeron.o
- .debug_line    0x000004e9       0x9a c:/program files (x86)/atmel/atmel studio 6.0/extensions/atmel/avrgcc/3.4.0.65/avrtoolchain/bin/../lib/gcc/avr/4.6.2/avr6\libgcc.a(_udivmodhi4.o)
- .debug_line    0x00000583       0x88 c:/program files (x86)/atmel/atmel studio 6.0/extensions/atmel/avrgcc/3.4.0.65/avrtoolchain/bin/../lib/gcc/avr/4.6.2/avr6\libgcc.a(_exit.o)
- .debug_line    0x0000060b       0x93 c:/program files (x86)/atmel/atmel studio 6.0/extensions/atmel/avrgcc/3.4.0.65/avrtoolchain/bin/../lib/gcc/avr/4.6.2/avr6\libgcc.a(_copy_data.o)
- .debug_line    0x0000069e       0x8e c:/program files (x86)/atmel/atmel studio 6.0/extensions/atmel/avrgcc/3.4.0.65/avrtoolchain/bin/../lib/gcc/avr/4.6.2/avr6\libgcc.a(_clear_bss.o)
+ .debug_line    0x00000000      0x4e7 Checksum_confirmation_buzzeron.o
+ .debug_line    0x000004e7       0x9a c:/program files (x86)/atmel/atmel studio 6.0/extensions/atmel/avrgcc/3.4.0.65/avrtoolchain/bin/../lib/gcc/avr/4.6.2/avr6\libgcc.a(_udivmodhi4.o)
+ .debug_line    0x00000581       0x88 c:/program files (x86)/atmel/atmel studio 6.0/extensions/atmel/avrgcc/3.4.0.65/avrtoolchain/bin/../lib/gcc/avr/4.6.2/avr6\libgcc.a(_exit.o)
+ .debug_line    0x00000609       0x93 c:/program files (x86)/atmel/atmel studio 6.0/extensions/atmel/avrgcc/3.4.0.65/avrtoolchain/bin/../lib/gcc/avr/4.6.2/avr6\libgcc.a(_copy_data.o)
+ .debug_line    0x0000069c       0x8e c:/program files (x86)/atmel/atmel studio 6.0/extensions/atmel/avrgcc/3.4.0.65/avrtoolchain/bin/../lib/gcc/avr/4.6.2/avr6\libgcc.a(_clear_bss.o)
 
 .debug_frame    0x00000000      0x29c
  *(.debug_frame)
  .debug_frame   0x00000000      0x29c Checksum_confirmation_buzzeron.o
 
-.debug_str      0x00000000      0x2c2
+.debug_str      0x00000000      0x2cd
  *(.debug_str)
- .debug_str     0x00000000      0x2c2 Checksum_confirmation_buzzeron.o
-                                0x300 (size before relaxing)
+ .debug_str     0x00000000      0x2cd Checksum_confirmation_buzzeron.o
+                                0x30b (size before relaxing)
 
 .debug_loc      0x00000000      0x518
  *(.debug_loc)

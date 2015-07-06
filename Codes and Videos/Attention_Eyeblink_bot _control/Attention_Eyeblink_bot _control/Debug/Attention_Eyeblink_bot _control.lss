@@ -199,7 +199,7 @@ Disassembly of section .text:
      }
      else
      {
-       Temp_Avg = Temp_Avg/2;		//taking average 
+       Temp_Avg = Temp_Avg/2;		//taking average
  1be:	60 91 59 02 	lds	r22, 0x0259
  1c2:	70 91 5a 02 	lds	r23, 0x025A
  1c6:	80 91 5b 02 	lds	r24, 0x025B
@@ -231,8 +231,8 @@ Disassembly of section .text:
  204:	10 92 5a 02 	sts	0x025A, r1
  208:	10 92 5b 02 	sts	0x025B, r1
  20c:	10 92 5c 02 	sts	0x025C, r1
-     } 
-   }             
+     }
+   }
    Eye_Blink ();
  210:	0e 94 66 02 	call	0x4cc	; 0x4cc <Eye_Blink>
    j=0;
@@ -243,7 +243,7 @@ Disassembly of section .text:
  220:	10 92 4a 02 	sts	0x024A, r1
  224:	10 92 4b 02 	sts	0x024B, r1
  228:	10 92 4c 02 	sts	0x024C, r1
-    
+
    }
  22c:	1f 91       	pop	r17
  22e:	0f 91       	pop	r16
@@ -260,7 +260,7 @@ volatile unsigned int ShaftCountRight,ShaftCountLeft,flag;
  234:	80 93 04 01 	sts	0x0104, r24
 	 PORTJ = 0x00; //Output is set to 0
  238:	10 92 05 01 	sts	0x0105, r1
-	 
+
 	 //LCD
 // 	 DDRC = DDRC | 0xF7;
 // 	 PORTC = PORTC & 0x80;
@@ -768,12 +768,12 @@ void run(){
  4ca:	08 95       	ret
 
 000004cc <Eye_Blink>:
-    
+
    }
  //function for indication of eye-bling and raw values when removed from head
  void Eye_Blink ()
  {
-   if (Eye_Enable)         
+   if (Eye_Enable)
  4cc:	80 91 14 02 	lds	r24, 0x0214
  4d0:	90 91 15 02 	lds	r25, 0x0215
  4d4:	00 97       	sbiw	r24, 0x00	; 0
@@ -868,7 +868,7 @@ void run(){
  582:	10 92 05 02 	sts	0x0205, r1
  586:	10 92 04 02 	sts	0x0204, r1
  58a:	08 95       	ret
-		   }  	  	  
+		   }
 	   }
        else
        {
@@ -894,19 +894,19 @@ void run(){
  5ae:	00 c0       	rjmp	.+0      	; 0x5b0 <Eye_Blink+0xe4>
  5b0:	00 00       	nop
  5b2:	0e 94 8e 01 	call	0x31c	; 0x31c <buzzer_off>
-			stop();		
+			stop();
  5b6:	0e 94 cd 01 	call	0x39a	; 0x39a <stop>
  5ba:	08 95       	ret
        }
-	   }	   
-     
+	   }
+
 	 else
      {
        PORTJ=0x00;
  5bc:	10 92 05 01 	sts	0x0105, r1
  5c0:	08 95       	ret
-     }  
-	 }	      
+     }
+	 }
    else    //Device is paired
    {
      PORTJ=0x01;
@@ -918,9 +918,9 @@ void run(){
 
 000005ce <checkData>:
 	 }
-} 
- 
- 
+}
+
+
  void checkData(){ //if two eye-blinks are not detected vary the velocity depending upon the attention level
 	 if(p<2){
  5ce:	80 91 04 02 	lds	r24, 0x0204
@@ -928,14 +928,14 @@ void run(){
  5d6:	82 30       	cpi	r24, 0x02	; 2
  5d8:	91 05       	cpc	r25, r1
  5da:	10 f4       	brcc	.+4      	; 0x5e0 <checkData+0x12>
-	 run();	
+	 run();
  5dc:	0e 94 da 01 	call	0x3b4	; 0x3b4 <run>
  5e0:	08 95       	ret
 
 000005e2 <Small_Packet>:
-	 }	 	  
+	 }
  }
-	 
+
  //Function performed when payload length of 0x04 is detected
  void Small_Packet ()
  {
@@ -952,7 +952,7 @@ void run(){
  5f8:	c1 f0       	breq	.+48     	; 0x62a <Small_Packet+0x48>
  5fa:	c0 e0       	ldi	r28, 0x00	; 0
  5fc:	d0 e0       	ldi	r29, 0x00	; 0
-   { 
+   {
      payloadDataS[i] = USART1_RX_vect();      //Read payload into memory
  5fe:	08 e3       	ldi	r16, 0x38	; 56
  600:	12 e0       	ldi	r17, 0x02	; 2
@@ -966,7 +966,7 @@ void run(){
  610:	80 91 16 02 	lds	r24, 0x0216
  614:	89 0f       	add	r24, r25
  616:	80 93 16 02 	sts	0x0216, r24
-	 
+
  //Function performed when payload length of 0x04 is detected
  void Small_Packet ()
  {
@@ -978,7 +978,7 @@ void run(){
  624:	c8 17       	cp	r28, r24
  626:	d9 07       	cpc	r29, r25
  628:	60 f3       	brcs	.-40     	; 0x602 <Small_Packet+0x20>
-   { 
+   {
      payloadDataS[i] = USART1_RX_vect();      //Read payload into memory
      generatedchecksum  += payloadDataS[i] ;
    }
@@ -995,7 +995,7 @@ void run(){
  644:	98 17       	cp	r25, r24
  646:	09 f0       	breq	.+2      	; 0x64a <Small_Packet+0x68>
  648:	48 c0       	rjmp	.+144    	; 0x6da <Small_Packet+0xf8>
-   { 	   
+   {
      if (j<100)								//Take 100 data packets sample
  64a:	80 91 40 02 	lds	r24, 0x0240
  64e:	90 91 41 02 	lds	r25, 0x0241
@@ -1031,7 +1031,7 @@ void run(){
  68a:	05 c0       	rjmp	.+10     	; 0x696 <Small_Packet+0xb4>
        }
        else
-       {	   
+       {
          Raw_data = (Raw_data&0xFFF);
  68c:	3f 70       	andi	r19, 0x0F	; 15
  68e:	30 93 52 02 	sts	0x0252, r19
@@ -1074,7 +1074,7 @@ void run(){
  6e2:	08 95       	ret
 
 000006e4 <Big_Packet>:
- 
+
  void Big_Packet()
  {
  6e4:	0f 93       	push	r16
@@ -1105,7 +1105,7 @@ void run(){
  716:	89 0f       	add	r24, r25
  718:	80 93 16 02 	sts	0x0216, r24
  }
- 
+
  void Big_Packet()
  {
 	  generatedchecksum = 0;
@@ -1127,7 +1127,7 @@ void run(){
 	  checksum  = USART1_RX_vect();
  736:	0e 94 c5 01 	call	0x38a	; 0x38a <__vector_36>
  73a:	80 93 17 02 	sts	0x0217, r24
-	  
+
 	  if(checksum == generatedchecksum)        // Varify Checksum
  73e:	90 91 17 02 	lds	r25, 0x0217
  742:	80 91 16 02 	lds	r24, 0x0216
@@ -1135,7 +1135,7 @@ void run(){
  748:	09 f0       	breq	.+2      	; 0x74c <Big_Packet+0x68>
  74a:	62 c0       	rjmp	.+196    	; 0x810 <Big_Packet+0x12c>
 	  {
-		   if (payloadDataB[28]==4)				//check for attention signal 
+		   if (payloadDataB[28]==4)				//check for attention signal
  74c:	80 91 34 02 	lds	r24, 0x0234
  750:	84 30       	cpi	r24, 0x04	; 4
  752:	09 f0       	breq	.+2      	; 0x756 <Big_Packet+0x72>
@@ -1232,7 +1232,7 @@ void run(){
 
 0000081a <init_devices>:
    }
-	    
+
  }
 void init_devices(void)
 {
@@ -1257,7 +1257,7 @@ void init_devices(void)
 	 int j=0;
 	 while (1)
 	 {
-		 
+
 	 if(USART1_RX_vect() == 170)        // AA 1 st Sync data
  830:	0e 94 c5 01 	call	0x38a	; 0x38a <__vector_36>
  834:	8a 3a       	cpi	r24, 0xAA	; 170
@@ -1278,7 +1278,7 @@ void init_devices(void)
  850:	91 05       	cpc	r25, r1
  852:	19 f4       	brne	.+6      	; 0x85a <main+0x2e>
 			 {
-				 
+
 				 Small_Packet ();
  854:	0e 94 f1 02 	call	0x5e2	; 0x5e2 <Small_Packet>
  858:	eb cf       	rjmp	.-42     	; 0x830 <main+0x4>

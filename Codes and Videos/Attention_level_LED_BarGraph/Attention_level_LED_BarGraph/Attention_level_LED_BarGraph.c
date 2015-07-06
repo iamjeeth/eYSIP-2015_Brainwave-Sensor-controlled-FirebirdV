@@ -1,4 +1,8 @@
 /*
+Members: Omkar Rajendra Mohite
+         Ashish Kumar Jain
+Mentors: Mehul Makwana
+         Rutuja Ekatpure 
  * Attention_level_LED_BarGraph.c
  * This code glows LED bar graph depending upon the attention level of the brain of user. 
  * As attention is high number of LEDs glowing will be more.

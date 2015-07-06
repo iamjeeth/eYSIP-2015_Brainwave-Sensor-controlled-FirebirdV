@@ -237,7 +237,7 @@ void port_init()
 00000186 <checkData>:
 //function for detecting various levels of attention 
 void checkData(){
-	if(Med_Avg>=1 && Med_Avg<=10){
+	if(Med_Avg>=1 && Med_Avg<=10){  //Poor meditation level
  186:	80 91 2b 02 	lds	r24, 0x022B
  18a:	88 23       	and	r24, r24
  18c:	41 f0       	breq	.+16     	; 0x19e <checkData+0x18>
@@ -249,7 +249,7 @@ void checkData(){
  198:	80 93 05 01 	sts	0x0105, r24
  19c:	08 95       	ret
 	}
-	else if(Med_Avg>10 && Med_Avg<=30){
+	else if(Med_Avg>10 && Med_Avg<=30){  //Poor meditation level
  19e:	80 91 2b 02 	lds	r24, 0x022B
  1a2:	8b 30       	cpi	r24, 0x0B	; 11
  1a4:	40 f0       	brcs	.+16     	; 0x1b6 <checkData+0x30>
@@ -261,7 +261,7 @@ void checkData(){
  1b0:	80 93 05 01 	sts	0x0105, r24
  1b4:	08 95       	ret
 	}
-	else if(Med_Avg>30 && Med_Avg<=40){
+	else if(Med_Avg>30 && Med_Avg<=40){ //Meditation level building up
  1b6:	80 91 2b 02 	lds	r24, 0x022B
  1ba:	8f 31       	cpi	r24, 0x1F	; 31
  1bc:	40 f0       	brcs	.+16     	; 0x1ce <checkData+0x48>
@@ -273,7 +273,7 @@ void checkData(){
  1c8:	80 93 05 01 	sts	0x0105, r24
  1cc:	08 95       	ret
 	}
-	else if(Med_Avg>40 && Med_Avg<=50){
+	else if(Med_Avg>40 && Med_Avg<=50){  //Neutral
  1ce:	80 91 2b 02 	lds	r24, 0x022B
  1d2:	89 32       	cpi	r24, 0x29	; 41
  1d4:	40 f0       	brcs	.+16     	; 0x1e6 <checkData+0x60>
@@ -285,7 +285,7 @@ void checkData(){
  1e0:	80 93 05 01 	sts	0x0105, r24
  1e4:	08 95       	ret
 	}
-	else if(Med_Avg>50 && Med_Avg<=60){
+	else if(Med_Avg>50 && Med_Avg<=60){  //Neutral
  1e6:	80 91 2b 02 	lds	r24, 0x022B
  1ea:	83 33       	cpi	r24, 0x33	; 51
  1ec:	40 f0       	brcs	.+16     	; 0x1fe <checkData+0x78>
@@ -297,7 +297,7 @@ void checkData(){
  1f8:	80 93 05 01 	sts	0x0105, r24
  1fc:	08 95       	ret
 	}
-	else if(Med_Avg>60 && Med_Avg<=70){
+	else if(Med_Avg>60 && Med_Avg<=70){  //Slightly elevated
  1fe:	80 91 2b 02 	lds	r24, 0x022B
  202:	8d 33       	cpi	r24, 0x3D	; 61
  204:	40 f0       	brcs	.+16     	; 0x216 <checkData+0x90>
@@ -309,7 +309,7 @@ void checkData(){
  210:	80 93 05 01 	sts	0x0105, r24
  214:	08 95       	ret
 	}
-	else if(Med_Avg>70 && Med_Avg<=80){
+	else if(Med_Avg>70 && Med_Avg<=80){  //Slightly elevated
  216:	80 91 2b 02 	lds	r24, 0x022B
  21a:	87 34       	cpi	r24, 0x47	; 71
  21c:	40 f0       	brcs	.+16     	; 0x22e <checkData+0xa8>
@@ -321,7 +321,7 @@ void checkData(){
  228:	80 93 05 01 	sts	0x0105, r24
  22c:	08 95       	ret
 	}
-	else if(Med_Avg>80 && Med_Avg<=100){
+	else if(Med_Avg>80 && Med_Avg<=100){ //Elevated
  22e:	80 91 2b 02 	lds	r24, 0x022B
  232:	81 35       	cpi	r24, 0x51	; 81
  234:	38 f0       	brcs	.+14     	; 0x244 <checkData+0xbe>
@@ -398,7 +398,7 @@ void Big_Packet()
  2aa:	09 f0       	breq	.+2      	; 0x2ae <Big_Packet+0x68>
  2ac:	4e c0       	rjmp	.+156    	; 0x34a <Big_Packet+0x104>
 	{
-		if (payloadDataB[30]==5) //Checking for attention level 
+		if (payloadDataB[30]==5) //Checking for meditation
  2ae:	80 91 22 02 	lds	r24, 0x0222
  2b2:	85 30       	cpi	r24, 0x05	; 5
  2b4:	09 f0       	breq	.+2      	; 0x2b8 <Big_Packet+0x72>
@@ -411,7 +411,7 @@ void Big_Packet()
  2c2:	91 05       	cpc	r25, r1
  2c4:	20 f5       	brcc	.+72     	; 0x30e <Big_Packet+0xc8>
 			{
-				Meditation [k] = payloadDataB[31];
+				Meditation [k] = payloadDataB[31]; // meditation level indication
  2c6:	e0 91 00 02 	lds	r30, 0x0200
  2ca:	f0 91 01 02 	lds	r31, 0x0201
  2ce:	20 91 23 02 	lds	r18, 0x0223

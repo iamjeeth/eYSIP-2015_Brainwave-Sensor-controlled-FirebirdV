@@ -1,3 +1,10 @@
+/*
+Members: Omkar Rajendra Mohite
+         Ashish Kumar Jain
+Mentors: Mehul Makwana
+         Rutuja Ekatpure
+*/
+
 /*PROGRAM TO RECIEVE ANY DATA
 FROM THE BRAINWAVE SENSOR
 */

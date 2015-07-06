@@ -1,4 +1,8 @@
 /*
+Members: Omkar Rajendra Mohite
+         Ashish Kumar Jain
+Mentors: Mehul Makwana
+         Rutuja Ekatpure
  * This code glows LED bar graph depending upon the meditation level of the brain of user. 
  * As meditation is high number of LEDs glowing will be more.
  * 

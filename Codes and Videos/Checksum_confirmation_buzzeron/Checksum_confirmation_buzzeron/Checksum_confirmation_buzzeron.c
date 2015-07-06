@@ -1,4 +1,8 @@
 /*
+Members: Omkar Rajendra Mohite
+         Ashish Kumar Jain
+Mentors: Mehul Makwana
+         Rutuja Ekatpure
  * Checksum_confirmation_buzzeron.c
  * This code turns on the buzzer as checksum byte received at the end of the packet
    is equal to calculated checksum. This shows that the packet received is correct and 

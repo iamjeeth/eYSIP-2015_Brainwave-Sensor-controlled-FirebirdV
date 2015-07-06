@@ -1,4 +1,8 @@
 /*
+Members: Omkar Rajendra Mohite
+         Ashish Kumar Jain
+Mentors: Mehul Makwana
+         Rutuja Ekatpure
 Program for Eyeblink Detection using Mindwave mobile connected to Firebird V.
 Eyeblink is detected by Buzzer beep.
 Sensor paired is indicated by one LED blink

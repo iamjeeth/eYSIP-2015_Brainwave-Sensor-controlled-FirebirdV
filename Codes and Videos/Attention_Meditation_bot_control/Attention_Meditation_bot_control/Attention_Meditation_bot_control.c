@@ -1,4 +1,8 @@
 /*
+Members: Omkar Rajendra Mohite
+         Ashish Kumar Jain
+Mentors: Mehul Makwana
+         Rutuja Ekatpure
 Program on controlling Firebird V using attention and meditation level.
 Depending upon variation of attention level, velocity of the bot will also change.
 If mediatation of a person reaches above 70% the bot will take left turn
